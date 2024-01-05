@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Mob",
+"language": "GDScript",
+"path": "res://src/scripts/classdefs/Mob.gd"
+} ]
+_global_script_class_icons={
+"Mob": ""
+}
+
 [application]
 
 config/name="Game Dev Knock Out 2024 Round 1"
@@ -74,4 +84,6 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+gles2/compatibility/disable_half_float.iOS=false
+environment/default_clear_color=Color( 0.054902, 0, 0.176471, 1 )
 environment/default_environment="res://default_env.tres"
