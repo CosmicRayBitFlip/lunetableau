@@ -2,5 +2,6 @@ extends KinematicBody2D
 
 class_name NPC
 
-var hp
-var speed
+var hp:int
+var speed:int
+var dir:Vector2

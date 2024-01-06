@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Game Dev Knock Out 2024 Round 1"
-run/main_scene="res://src/scenes/Main.tscn"
+run/main_scene="res://src/scenes/TestScene.tscn"
 config/icon="res://icon.png"
 
 [gui]
