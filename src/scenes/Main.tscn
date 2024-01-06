@@ -22,8 +22,10 @@ glow_hdr_scale = 0.2
 
 [node name="Line2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 126, 12 )
-scale = Vector2( 4.7805, 4.31307 )
-default_color = Color( 1, 0.62, 0.62, 1 )
+scale = Vector2( 4.78, 4.78 )
+default_color = Color( 1, 0.898039, 0.898039, 1 )
+begin_cap_mode = 1
+end_cap_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

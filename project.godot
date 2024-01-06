@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "Mob",
+"class": "NPC",
 "language": "GDScript",
-"path": "res://src/scripts/classdefs/Mob.gd"
+"path": "res://src/scripts/classdefs/NPC.gd"
 } ]
 _global_script_class_icons={
-"Mob": ""
+"NPC": ""
 }
 
 [application]
