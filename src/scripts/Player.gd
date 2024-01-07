@@ -33,20 +33,15 @@ func process_movement(input_vec, delta):
 
 func update_animation(rounded_mouse_angle):
 	var anim_type:String
-	
 	match rounded_mouse_angle:
 		RIGHT: 
-			anim_type = "Side"
-			$Sprite.flip_h = true
-		LEFT, -180.0: # godot doesn't like when i do LEFT, -LEFT so i have to use the actual number 
-			anim_type = "Side"
-			$Sprite.flip_h = false
+			anim_type = "Right"
+		LEFT, -180.0: # godot doesn't like when i do LEFT, -LEFT so i have to use the actual number i guess
+			anim_type = "Left"
 		BACK:
 			anim_type = "Back"
-			$Sprite.flip_h = false
 		FRONT:
 			anim_type = "Front"
-			$Sprite.flip_h = false
 	if input_vector:
 		$AnimationPlayer.play(anim_type + "Walk")
 	else:
