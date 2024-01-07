@@ -1,0 +1,3 @@
+extends NPC
+
+var type
