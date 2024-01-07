@@ -11,9 +11,6 @@ var input_vector:Vector2 = Vector2.ZERO
 var velocity:Vector2 = Vector2.ZERO
 var mouse_pos:Vector2; var angle_to_mouse:float
 
-func _ready():
-	pass
-
 func _input(event):
 	if event is InputEventKey:
 		input_vector.x = Input.get_axis("left", "right")
