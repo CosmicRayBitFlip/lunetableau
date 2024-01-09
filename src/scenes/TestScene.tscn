@@ -1,24 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/scripts/DebugFPS.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Enemy.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://src/scenes/TestLaser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=5]
-
-[sub_resource type="Environment" id=1]
-background_mode = 4
-glow_enabled = true
-glow_levels/3 = false
-glow_levels/4 = true
-glow_levels/5 = false
-glow_intensity = 1.4
-glow_strength = 1.1
-glow_bloom = 0.2
-glow_blend_mode = 1
-glow_hdr_scale = 0.2
+[ext_resource path="res://src/res/WorldEnvironment.tres" type="Environment" id=6]
+[ext_resource path="res://src/scripts/TestScene.gd" type="Script" id=7]
 
 [node name="TestScene" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="Line2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 126, 12 )
@@ -28,7 +19,7 @@ begin_cap_mode = 1
 end_cap_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = ExtResource( 6 )
 
 [node name="Icon" type="Sprite" parent="."]
 position = Vector2( -1, -2 )
@@ -45,8 +36,8 @@ zoom = Vector2( 0.33, 0.33 )
 [node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="FPS" type="Label" parent="."]
-margin_left = -168.0
-margin_top = -98.0
-margin_right = -128.0
-margin_bottom = -84.0
+margin_left = -211.0
+margin_top = -119.0
+margin_right = -171.0
+margin_bottom = -105.0
 script = ExtResource( 1 )

@@ -16,7 +16,7 @@ func _input(event):
 		input_vector.x = Input.get_axis("left", "right")
 		input_vector.y = Input.get_axis("up", "down")
 	if event is InputEventMouseMotion:
-		mouse_pos = event.position - get_viewport_transform().origin # mouse coordinate is apparently based on viewport
+		mouse_pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) # mouse coordinate is apparently based on viewport
 	angle_to_mouse = rad2deg(get_angle_to(mouse_pos))
 
 func _process(delta):

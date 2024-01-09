@@ -428,9 +428,10 @@ tracks/3/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 127.106, 14.5047 )
+extents = Vector2( 124.606, 14.5047 )
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -449,7 +450,7 @@ anims/RightIdle = SubResource( 8 )
 anims/RightWalk = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.0601901, -1.49012e-07 )
+position = Vector2( -5.74067e-06, 3.56629e-09 )
 rotation = -3.14159
 scale = Vector2( 0.0240758, -0.344715 )
 shape = SubResource( 3 )

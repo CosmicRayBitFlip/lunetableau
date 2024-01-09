@@ -10,19 +10,27 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "NPC",
+"class": "Enemy",
 "language": "GDScript",
 "path": "res://src/scripts/classdefs/NPC.gd"
 } ]
 _global_script_class_icons={
-"NPC": ""
+"Enemy": ""
 }
 
 [application]
 
-config/name="Game Dev Knock Out 2024 Round 1"
+config/name="Lunétableau"
 run/main_scene="res://src/scenes/TestScene.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [gui]
 
