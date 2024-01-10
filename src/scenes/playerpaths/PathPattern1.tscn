@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -192, -96, 0, 0, 0, 0, -192, 96, 0, 0, 0, 0, 192, 96, 0, 0, 0, 0, 192, -96, 0, 0, 0, 0, -192, -96 )
+}
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -176, -80, 0, 0, 0, 0, -176, 80, 0, 0, 0, 0, 176, 80, 0, 0, 0, 0, 176, -80, 0, 0, 0, 0, -176, -80 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -160, -64, 0, 0, 0, 0, -160, 64, 0, 0, 0, 0, 160, 64, 0, 0, 0, 0, 160, -64, 0, 0, 0, 0, -160, -64 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -144, -48, 0, 0, 0, 0, -144, 48, 0, 0, 0, 0, 144, 48, 0, 0, 0, 0, 144, -48, 0, 0, 0, 0, -144, -48 )
+}
+
+[node name="PathPattern1" type="Node2D"]
+
+[node name="WhitePath" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="WhitePathFollow" type="PathFollow2D" parent="WhitePath"]
+position = Vector2( -192, -96 )
+rotation = 1.5708
+
+[node name="RedPath" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="RedPathFollow" type="PathFollow2D" parent="RedPath"]
+position = Vector2( -176, -80 )
+rotation = 1.5708
+
+[node name="BluePath" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="BluePathFollow" type="PathFollow2D" parent="BluePath"]
+position = Vector2( -176, -80 )
+rotation = 1.5708
+
+[node name="YellowPath" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="YellowPathFollow" type="PathFollow2D" parent="YellowPath"]
+position = Vector2( -144, -48 )
+rotation = 1.5708

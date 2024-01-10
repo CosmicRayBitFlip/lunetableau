@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/scripts/DebugFPS.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/Enemy.png" type="Texture" id=2]
@@ -7,13 +7,17 @@
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/res/WorldEnvironment.tres" type="Environment" id=6]
 [ext_resource path="res://src/scripts/TestScene.gd" type="Script" id=7]
+[ext_resource path="res://src/scenes/playerpaths/PathPattern1.tscn" type="PackedScene" id=8]
 
 [node name="TestScene" type="Node2D"]
 script = ExtResource( 7 )
 
+[node name="PathPattern1" parent="." instance=ExtResource( 8 )]
+
 [node name="Line2D" parent="." instance=ExtResource( 4 )]
-position = Vector2( 126, 12 )
+position = Vector2( 201, 29 )
 scale = Vector2( 4.78, 4.78 )
+points = PoolVector2Array( -1.90735e-06, -16.2441, 0, -12.9707, 0, 2 )
 default_color = Color( 1, 0.898039, 0.898039, 1 )
 begin_cap_mode = 1
 end_cap_mode = 1
@@ -26,7 +30,7 @@ position = Vector2( -1, -2 )
 texture = ExtResource( 3 )
 
 [node name="Enemy" type="Sprite" parent="."]
-position = Vector2( -125, -59 )
+position = Vector2( 0, -41 )
 texture = ExtResource( 2 )
 
 [node name="Camera" type="Camera2D" parent="."]

@@ -2,11 +2,14 @@
 
 [resource]
 background_mode = 4
+fog_color = Color( 0.882353, 0, 0, 1 )
+glow_enabled = true
 glow_levels/3 = false
 glow_levels/4 = true
 glow_levels/5 = false
 glow_intensity = 1.4
 glow_strength = 1.1
-glow_bloom = 0.2
+glow_bloom = 0.3
 glow_blend_mode = 1
 glow_hdr_scale = 0.2
+adjustment_enabled = true
