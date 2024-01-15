@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/scenes/UI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scripts/UI.gd" type="Script" id=2]
+[ext_resource path="res://src/res/WorldEnvironment.tres" type="Environment" id=3]
+[ext_resource path="res://src/scenes/Upgrades.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/scripts/Main.gd" type="Script" id=6]
+[ext_resource path="res://src/scenes/PathManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=8]
+
+[sub_resource type="TileSet" id=1]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 0, -86 )
+
+[node name="GameUI" parent="." instance=ExtResource( 1 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -209.0
+margin_top = -116.0
+margin_right = 209.0
+margin_bottom = 116.0
+script = ExtResource( 2 )
+
+[node name="Upgrades" parent="." instance=ExtResource( 4 )]
+margin_left = -211.0
+margin_top = -118.0
+margin_right = -211.0
+margin_bottom = -118.0
+
+[node name="PathManager" parent="." instance=ExtResource( 7 )]
+scale = Vector2( 0.9, 0.9 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.33, 0.33 )
+
+[node name="Player" parent="." instance=ExtResource( 8 )]
+
+[node name="Boundary" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+format = 1
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+margin_top = -86.0
+margin_right = 40.0
+margin_bottom = -72.0
+text = "Game Over"
