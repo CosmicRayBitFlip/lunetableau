@@ -14,13 +14,8 @@ func spawn(spawn_pos:Vector2, dir:Vector2 = Vector2.DOWN):
 	
 	var closest_point =	path.get_closest_point(position.move_toward(direction, 1))
 
-func _ready():
-	player = $"../../../../Player"
-	scene_root = $"../../../.." 
-
-
-func _think_movement():
+func _think_movement(delta):
 	if position != Vector2.ZERO:
-		position = position.move_toward(Vector2.ZERO, speed)
+		position = position.move_toward(Vector2.ZERO, speed * delta)
 	else:
-		path_follow.offset += speed
+		path_follow.offset += speed * delta

@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 class_name Enemy
 
-onready var player:KinematicBody2D = get_node_or_null("../Player")
-onready var scene_root = get_node_or_null("..")
+onready var scene_root = get_tree().get_current_scene()
+onready var player:KinematicBody2D = scene_root.get_node("Player")
 
 var hp:int
 var speed:float
@@ -24,12 +24,12 @@ func spawn(spawn_pos:Vector2):
 func _process(delta):
 	if spawned:
 		time_since_last_shoot += delta
-		_think_movement()
+		_think_movement(delta)
 		_update_animation()
 		_think_shoot()
 
-func _think_movement():
-	position = position.move_toward(player.position, speed)
+func _think_movement(delta):
+	position = position.move_toward(player.position, speed * delta)
 
 func _update_animation():
 	pass
@@ -56,7 +56,7 @@ func damage(damage_amt):
 func _on_collision_with_laser(body):
 	if body is Laser:
 		if body.hasnt_collided_with($'.'):
-			damage(5 + player.damage_modifier)
+			damage(5 + player.attack_modifier)
 
 func create_laser():
 	pass
