@@ -32,7 +32,7 @@ func _input(event):
 		input_vector.y = Input.get_axis("up", "down")
 		
 		if Input.is_action_just_pressed("debug_shoot"):
-			if scene_root.enemies_left != 0:
+			if scene_root.enemies_left != 0 and hp > 0:
 				shoot()
 		if Input.is_action_just_pressed("glasses1"):
 			glasses_type = GLASSES1
@@ -86,11 +86,9 @@ func update_animation(rounded_mouse_angle):
 		$AnimationPlayer.play(anim_type + "Idle")
 
 func damage():
-	print("and i oop")
 	hp -= 1
 	if hp <= 0:
 		hide()
-		$'../GameOver'.show()
 
 
 func _on_collision_with_laser(body):

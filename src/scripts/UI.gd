@@ -7,7 +7,6 @@ onready var score_counter = $"TopBar/ScoreCounter"
 onready var cash_counter = $"TopBar/Cash"
 onready var hp_counter = $HP
 
-
 func _process(delta):
 	round_counter.text = "Round " + str(scene_root.current_round)
 	score_counter.text = str(scene_root.score)
