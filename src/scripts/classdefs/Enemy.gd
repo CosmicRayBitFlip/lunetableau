@@ -35,7 +35,7 @@ func _update_animation(delta):
 	pass
 
 func _think_shoot():
-	if time_since_last_shoot > shoot_fatigue:
+	if time_since_last_shoot > shoot_fatigue and player.hp > 0:
 		var angle_to_player = rad2deg(get_angle_to(player.position))
 		var lasers = []
 

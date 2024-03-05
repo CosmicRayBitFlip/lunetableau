@@ -38,8 +38,8 @@ func _update_animation(delta):
 		else:
 			$AnimationPlayer.play("BackWalk")
 
-func _think_shoot():
-	if time_since_last_shoot > shoot_fatigue:
+func _think_shoot(): # refactor this later
+	if time_since_last_shoot > shoot_fatigue and player.hp > 0:
 		var angle_to_player = rad2deg(get_angle_to(player.position))
 		var lasers = []
 
