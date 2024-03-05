@@ -27,7 +27,7 @@ func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("debug_spawn_enemy"):
 			if event.shift:
-				spawn_eye_robot(Vector2.ZERO)
+				spawn_eye_robot($SpawnPoint.position)
 			else:
 				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), $SpawnPoint.position, Vector2.DOWN)
 			enemies_left += 1
@@ -38,7 +38,7 @@ func _input(event):
 func _process(delta):
 	time_since_last_spawn += delta
 	if spawn_queue and time_since_last_spawn > 1.0:
-		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), Vector2.ZERO, Vector2.DOWN)
+		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), $SpawnPoint.position, Vector2.DOWN)
 		spawn_queue -= 1
 		time_since_last_spawn = 0.0
 
