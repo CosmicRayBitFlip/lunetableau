@@ -13,9 +13,9 @@ enum { # direction constants for animation, angle between eye and player
 
 func _ready():
 	hp = 10 + scene_root.current_round
-	speed = 1.5
+	speed = 15
 
-func _update_animation():
+func _update_animation(delta):
 	var angle_to_player = rad2deg(get_angle_to(player.position))
 	var converted_angle = convert_angle(angle_to_player)
 	

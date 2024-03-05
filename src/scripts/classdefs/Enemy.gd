@@ -25,13 +25,13 @@ func _process(delta):
 	if spawned:
 		time_since_last_shoot += delta
 		_think_movement(delta)
-		_update_animation()
+		_update_animation(delta)
 		_think_shoot()
 
 func _think_movement(delta):
 	position = position.move_toward(player.position, speed * delta)
 
-func _update_animation():
+func _update_animation(delta):
 	pass
 
 func _think_shoot():
@@ -39,7 +39,16 @@ func _think_shoot():
 		var angle_to_player = rad2deg(get_angle_to(player.position))
 		var lasers = []
 
-		lasers.append(Laser.new(scene_root.to_local(to_global(position)), angle_to_player, Color(1,1,1,1), 2, 0b1, 300))
+		lasers.append(
+			Laser.new(
+				position + Vector2(15, 0).rotated(deg2rad(angle_to_player)), 
+				angle_to_player, 
+				Color(1,1,1,1), 
+				2, 
+				0b1, 
+				300
+			)
+		)
 		for i in lasers:
 			scene_root.add_child(i)
 		time_since_last_shoot = 0

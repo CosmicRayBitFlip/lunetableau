@@ -3,7 +3,7 @@
 [ext_resource path="res://src/scripts/DebugFPS.gd" type="Script" id=1]
 [ext_resource path="res://src/res/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/scripts/UI.gd" type="Script" id=3]
-[ext_resource path="res://src/scenes/Upgrades.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/scripts/Upgrades.gd" type="Script" id=4]
 
 [node name="GameUI" type="Control"]
 anchor_right = 0.33
@@ -57,4 +57,100 @@ anchor_bottom = 1.0
 grow_vertical = 0
 text = "5/5 HP"
 
-[node name="Upgrades" parent="." instance=ExtResource( 4 )]
+[node name="Upgrades" type="Control" parent="."]
+anchor_right = 0.33
+anchor_bottom = 0.33
+theme = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="UpgradesList" type="VBoxContainer" parent="Upgrades"]
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="UpgradesLabel" type="Label" parent="Upgrades/UpgradesList"]
+margin_right = 167.0
+margin_bottom = 22.0
+text = "Upgrades:"
+
+[node name="Damage" type="HBoxContainer" parent="Upgrades/UpgradesList"]
+margin_top = 26.0
+margin_right = 167.0
+margin_bottom = 54.0
+
+[node name="DamageUpgrade" type="Button" parent="Upgrades/UpgradesList/Damage"]
+margin_right = 75.0
+margin_bottom = 28.0
+text = "Damage"
+
+[node name="Level" type="Label" parent="Upgrades/UpgradesList/Damage"]
+margin_left = 79.0
+margin_top = 3.0
+margin_right = 116.0
+margin_bottom = 25.0
+text = "Lv. 0"
+
+[node name="Price" type="Label" parent="Upgrades/UpgradesList/Damage"]
+margin_left = 120.0
+margin_top = 3.0
+margin_right = 148.0
+margin_bottom = 25.0
+text = " $10"
+
+[node name="Pierce" type="HBoxContainer" parent="Upgrades/UpgradesList"]
+margin_top = 58.0
+margin_right = 167.0
+margin_bottom = 86.0
+
+[node name="PierceUpgrade" type="Button" parent="Upgrades/UpgradesList/Pierce"]
+margin_right = 58.0
+margin_bottom = 28.0
+text = "Pierce"
+
+[node name="Level" type="Label" parent="Upgrades/UpgradesList/Pierce"]
+margin_left = 62.0
+margin_top = 3.0
+margin_right = 99.0
+margin_bottom = 25.0
+text = "Lv. 0"
+
+[node name="Price" type="Label" parent="Upgrades/UpgradesList/Pierce"]
+margin_left = 103.0
+margin_top = 3.0
+margin_right = 131.0
+margin_bottom = 25.0
+text = " $10"
+
+[node name="HP" type="HBoxContainer" parent="Upgrades/UpgradesList"]
+margin_top = 90.0
+margin_right = 167.0
+margin_bottom = 118.0
+
+[node name="HPUpgrade" type="Button" parent="Upgrades/UpgradesList/HP"]
+margin_right = 69.0
+margin_bottom = 28.0
+text = "Max HP"
+
+[node name="Level" type="Label" parent="Upgrades/UpgradesList/HP"]
+margin_left = 73.0
+margin_top = 3.0
+margin_right = 110.0
+margin_bottom = 25.0
+text = "Lv. 0"
+
+[node name="Price" type="Label" parent="Upgrades/UpgradesList/HP"]
+margin_left = 114.0
+margin_top = 3.0
+margin_right = 142.0
+margin_bottom = 25.0
+text = " $10"
+
+[node name="dfghsdfgihjdsfg" type="Label" parent="Upgrades/UpgradesList"]
+margin_top = 122.0
+margin_right = 167.0
+margin_bottom = 144.0
+text = "Enter to call next round"
+
+[connection signal="button_down" from="Upgrades/UpgradesList/Damage/DamageUpgrade" to="Upgrades" method="_on_DamageUpgrade_button_down"]
+[connection signal="button_down" from="Upgrades/UpgradesList/Pierce/PierceUpgrade" to="Upgrades" method="_on_PierceUpgrade_button_down"]
+[connection signal="button_down" from="Upgrades/UpgradesList/HP/HPUpgrade" to="Upgrades" method="_on_HPUpgrade_button_down"]

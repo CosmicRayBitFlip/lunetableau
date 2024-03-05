@@ -39,7 +39,3 @@ zoom = Vector2( 0.33, 0.33 )
 [node name="Boundary" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 format = 1
-
-[node name="TextureProgress" type="TextureProgress" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0

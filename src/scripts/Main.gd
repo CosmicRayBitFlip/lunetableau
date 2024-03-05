@@ -30,6 +30,7 @@ func _input(event):
 				spawn_eye_robot(Vector2.ZERO)
 			else:
 				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), $SpawnPoint.position, Vector2.DOWN)
+			enemies_left += 1
 		if Input.is_action_just_pressed("call_next_round"):
 			if enemies_left == 0:
 				call_next_round()
