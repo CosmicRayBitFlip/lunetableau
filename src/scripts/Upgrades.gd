@@ -4,13 +4,19 @@ extends Control
 
 onready var scene_root = get_tree().get_current_scene()
 onready var player = scene_root.get_node("Player")
+onready var damage_level = $UpgradesList/Damage/Level
+onready var pierce_level = $UpgradesList/Pierce/Level
+onready var hp_level = $UpgradesList/HP/Level
 
 func _process(delta):
 	if scene_root.enemies_left == 0:
 		show()
 	else:
 		hide()
-
+	
+	damage_level.text = "Lv. " + str(player.attack_modifier)
+	pierce_level.text = "Lv. " + str(player.pierce_modifier)
+	hp_level.text     = "Lv. " + str(player.hp_modifier -5)
 
 func _on_DamageUpgrade_button_down():
 	if scene_root.cash >= 10:

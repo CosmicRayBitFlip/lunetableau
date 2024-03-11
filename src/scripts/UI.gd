@@ -11,7 +11,7 @@ func _process(delta):
 	round_counter.text = "Round " + str(scene_root.current_round)
 	score_counter.text = str(scene_root.score)
 	cash_counter.text = "$" + str(scene_root.cash)
-	hp_counter.text = str(player.hp) + "/5 HP"
+	hp_counter.text = str(player.hp) + "/" + str(player.hp_modifier) + "HP"
 	
 	if round_counter.text == "Round 0":
 		round_counter.hide()
