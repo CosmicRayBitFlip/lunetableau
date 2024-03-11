@@ -12,7 +12,6 @@
 script = ExtResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
 follow_viewport_enable = true
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource( 1 )]
