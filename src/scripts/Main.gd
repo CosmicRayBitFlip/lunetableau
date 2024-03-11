@@ -7,6 +7,13 @@ onready var paths = [ # when accessing use `Enemy` team name constants
 	$PathManager/BluePath, 
 	$PathManager/YellowPath
 ]
+const spawn_points = PoolVector2Array([
+	Vector2(0, -90),
+	Vector2(180, 0),
+	Vector2(0, 90),
+	Vector2(-180, 0)
+])
+var spawn_point_ptr:int = 0
 var RobotEnemy = preload("res://src/scenes/RobotEnemy.tscn")
 var EyeEnemy = preload("res://src/scenes/EyeEnemy.tscn")
 
@@ -27,10 +34,11 @@ func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("debug_spawn_enemy"):
 			if event.shift:
-				spawn_eye_robot($SpawnPoint.position)
+				spawn_eye_robot(spawn_points[spawn_point_ptr])
 			else:
-				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), $SpawnPoint.position, Vector2.DOWN)
+				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], Vector2.DOWN)
 			enemies_left += 1
+			spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		if Input.is_action_just_pressed("call_next_round"):
 			if enemies_left == 0:
 				call_next_round()
@@ -38,8 +46,9 @@ func _input(event):
 func _process(delta):
 	time_since_last_spawn += delta
 	if spawn_queue and time_since_last_spawn > 1.0:
-		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), $SpawnPoint.position, Vector2.DOWN)
+		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], Vector2.DOWN)
 		spawn_queue -= 1
+		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		time_since_last_spawn = 0.0
 
 func call_next_round():
