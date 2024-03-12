@@ -12,7 +12,7 @@ func spawn(spawn_pos:Vector2):
 	speed = 50
 	spawned = true
 	
-	var closest_point =	path_curve.get_closest_point(position.move_toward(direction, 1))
+	#var closest_point = path_curve.get_closest_point(position.move_toward(direction, 1))
 
 func _think_movement(delta):
 	if position != Vector2.ZERO:
