@@ -7,6 +7,7 @@ onready var paths = [ # when accessing use `Enemy` team name constants
 	$PathManager/BluePath, 
 	$PathManager/YellowPath
 ]
+onready var env = $WorldEnvironment
 const spawn_points = PoolVector2Array([
 	Vector2(0, -90),
 	Vector2(180, 0),
@@ -50,6 +51,11 @@ func _process(delta):
 		spawn_queue -= 1
 		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		time_since_last_spawn = 0.0
+	
+	if enemies_left == 0 and not env.blurred:
+		env.blur(env.FADE_IN, 3.0, delta)
+	elif enemies_left != 0:
+		env.blur(env.FADE_OUT, 3.0, delta)
 
 func call_next_round():
 	var amt_of_robots = rand_range(10.0, 50.0) * (current_round * 0.1)
