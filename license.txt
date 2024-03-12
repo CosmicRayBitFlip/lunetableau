@@ -1,0 +1,2 @@
+Copyright 2024 KOD Studio. All rights reserved.
+This license may be replaced by KOD Studio at any time and for any reason, including for replacement by a more permissive license.
