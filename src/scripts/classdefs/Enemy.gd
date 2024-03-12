@@ -7,7 +7,6 @@ onready var player:KinematicBody2D = scene_root.get_node("Player")
 
 var hp:int
 var speed:float
-var direction:Vector2
 var spawned:bool = false
 
 enum {WHITE, RED, BLUE, YELLOW} # teams

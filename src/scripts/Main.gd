@@ -37,7 +37,7 @@ func _input(event):
 			if event.shift:
 				spawn_eye_robot(spawn_points[spawn_point_ptr])
 			else:
-				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], Vector2.DOWN)
+				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr])
 			enemies_left += 1
 			spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		if Input.is_action_just_pressed("call_next_round"):
@@ -47,7 +47,7 @@ func _input(event):
 func _process(delta):
 	time_since_last_spawn += delta
 	if spawn_queue and time_since_last_spawn > 1.0:
-		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], Vector2.DOWN)
+		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr])
 		spawn_queue -= 1
 		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		time_since_last_spawn = 0.0
@@ -65,7 +65,7 @@ func call_next_round():
 	
 	current_round += 1
 
-func spawn_normal_robot(team:int, spawn_pos:Vector2, direction:Vector2): 
+func spawn_normal_robot(team:int, spawn_pos:Vector2): 
 	# init PathFollow2D
 	r_pathfollows.append(PathFollow2D.new())
 	r_pathfollows[-1].rotate = false
@@ -75,7 +75,7 @@ func spawn_normal_robot(team:int, spawn_pos:Vector2, direction:Vector2):
 	# init RobotEnemy
 	r_instances.append(RobotEnemy.instance())
 	r_pathfollows[-1].add_child(r_instances[-1])
-	r_instances[-1].spawn(spawn_pos, direction)
+	r_instances[-1].spawn(spawn_pos)
 
 func spawn_eye_robot(spawn_pos:Vector2):
 	eye_enemies.append(EyeEnemy.instance())

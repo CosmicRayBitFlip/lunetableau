@@ -4,11 +4,10 @@ onready var path_follow:PathFollow2D = get_parent()
 onready var path:Path2D = path_follow.get_parent()
 onready var path_curve:Curve2D = path.curve
 
-func spawn(spawn_pos:Vector2, dir:Vector2 = Vector2.DOWN):
+func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):
 		$Hitbox.connect("body_entered", $".", "_on_collision_with_laser")
 	position = get_parent().to_local(spawn_pos)
-	direction = dir
 	hp = 10 + scene_root.current_round - 1
 	speed = 50
 	spawned = true
