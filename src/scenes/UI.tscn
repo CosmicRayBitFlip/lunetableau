@@ -16,33 +16,33 @@ anchor_right = 1.0
 alignment = 1
 
 [node name="RoundCounter" type="Label" parent="TopBar"]
-margin_left = 157.0
-margin_right = 210.0
+margin_left = 152.0
+margin_right = 215.0
 margin_bottom = 22.0
 grow_horizontal = 2
-text = "Round:"
+text = "Round 0"
 align = 1
 
 [node name="VSeparator" type="VSeparator" parent="TopBar"]
-margin_left = 214.0
-margin_right = 218.0
+margin_left = 219.0
+margin_right = 223.0
 margin_bottom = 22.0
 
 [node name="ScoreCounter" type="Label" parent="TopBar"]
-margin_left = 222.0
-margin_right = 233.0
+margin_left = 227.0
+margin_right = 238.0
 margin_bottom = 22.0
 grow_horizontal = 2
 text = "0"
 
 [node name="hi wat u doin here" type="VSeparator" parent="TopBar"]
-margin_left = 237.0
-margin_right = 241.0
+margin_left = 242.0
+margin_right = 246.0
 margin_bottom = 22.0
 
 [node name="Cash" type="Label" parent="TopBar"]
-margin_left = 245.0
-margin_right = 265.0
+margin_left = 250.0
+margin_right = 270.0
 margin_bottom = 22.0
 grow_horizontal = 2
 text = "$0"
@@ -56,6 +56,17 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
 text = "5/5 HP"
+
+[node name="EnemiesLeft" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Enemies Left: 0"
+align = 2
+valign = 2
 
 [node name="Upgrades" type="Control" parent="."]
 anchor_right = 0.33

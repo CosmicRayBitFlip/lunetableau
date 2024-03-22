@@ -6,6 +6,7 @@ onready var round_counter = $"TopBar/RoundCounter"
 onready var score_counter = $"TopBar/ScoreCounter"
 onready var cash_counter = $"TopBar/Cash"
 onready var hp_counter = $HP
+onready var enemy_counter = $EnemiesLeft
 
 func _process(delta):
 	round_counter.text = "Round " + str(scene_root.current_round)
@@ -19,3 +20,9 @@ func _process(delta):
 	else:
 		round_counter.show()
 		$"TopBar/VSeparator".show()
+	
+	if scene_root.enemies_left > 0:
+		enemy_counter.show()
+		enemy_counter.text = "Enemies Left: " + str(scene_root.enemies_left)
+	else:
+		enemy_counter.hide()
