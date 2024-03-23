@@ -1,3 +1,4 @@
+# this is an unused script left over from a different attempt at programming enemy ai
 extends Enemy
 
 var arrows

@@ -43,7 +43,7 @@ func _update_animation(delta):
 			$Sprite.frame = ANGLE_BEHIND
 
 func convert_angle(angle):
-	angle -= 90
+	angle -= 90 # this code hurts me
 	var angle_magnitude:int = abs(angle)
 	if 0 < angle_magnitude and angle_magnitude < 45:
 		return round(angle / 45) * 45

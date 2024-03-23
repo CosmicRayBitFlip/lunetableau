@@ -82,6 +82,8 @@ func spawn_eye_robot(spawn_pos:Vector2):
 	add_child(eye_enemies[-1])
 	eye_enemies[-1].spawn(spawn_pos)
 
+# ignore this function please nothing calls it
+# i just like preservation
 func idk_imma_leave_this_here(event): # old code from a bygone era
 	if Input.is_key_pressed(KEY_P):
 		var bot1 = RobotEnemy.instance()
