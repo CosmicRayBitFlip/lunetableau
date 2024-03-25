@@ -42,7 +42,7 @@ func _input(event):
 		input_vector.x = Input.get_axis("left", "right")
 		input_vector.y = Input.get_axis("up", "down")
 		
-		if Input.is_action_just_pressed("shoot") or (Input.is_action_pressed("shoot") and autofire):
+		if Input.is_action_just_pressed("shoot"):
 			if scene_root.enemies_left != 0 and hp > 0:
 				shoot()
 		if Input.is_action_just_pressed("glasses1"):
@@ -72,7 +72,9 @@ func shoot():
 func _process(delta):
 	if time_since_last_fired < weapon_cooldown:
 		time_since_last_fired += delta
-	
+		if (Input.is_action_pressed("shoot") and autofire):
+			if scene_root.enemies_left != 0 and hp > 0:
+				shoot()
 	if scene_root.enemies_left == 0:
 		hp += hp_modifier - hp
 	update_animation(round(angle_to_mouse / 90) * 90)
