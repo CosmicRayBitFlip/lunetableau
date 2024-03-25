@@ -14,6 +14,10 @@ const GREEN_LASER = Color(0.8, 1, 0.8, 1)
 const BLUE_LASER = Color(0.8, 0.8, 1, 1)
 const YELLOW_LASER = Color(1, 1, 0.8, 1)
 
+const weapon_cooldown = 0.125
+var time_since_last_fired = weapon_cooldown
+var autofire = false
+
 var hp = 5
 
 var input_vector:Vector2 = Vector2.ZERO
@@ -26,12 +30,19 @@ var attack_modifier = 0
 var pierce_modifier = 0
 var hp_modifier = 5
 
+func _ready():
+	var settings_file = File.new()
+	settings_file.open("user://settings.dat", File.READ)
+	settings_file.get_8() # discard first value
+	autofire = bool(settings_file.get_8())
+	settings_file.close()
+
 func _input(event):
 	if event is InputEventKey or event is InputEventMouseButton:
 		input_vector.x = Input.get_axis("left", "right")
 		input_vector.y = Input.get_axis("up", "down")
 		
-		if Input.is_action_just_pressed("debug_shoot"):
+		if Input.is_action_just_pressed("shoot") or (Input.is_action_pressed("shoot") and autofire):
 			if scene_root.enemies_left != 0 and hp > 0:
 				shoot()
 		if Input.is_action_just_pressed("glasses1"):
@@ -43,20 +54,25 @@ func _input(event):
 	angle_to_mouse = rad2deg(get_angle_to(mouse_pos))
 
 func shoot():
-	var lasers = []
-	match glasses_type:
-		GLASSES1: 
-			lasers.append(Laser.new(position, angle_to_mouse, RED_LASER, 2 + pierce_modifier))
-			lasers.append(Laser.new(position, angle_to_mouse - 15, RED_LASER, 2 + pierce_modifier))
-			lasers.append(Laser.new(position, angle_to_mouse + 15, RED_LASER, 2 + pierce_modifier))
-		GLASSES2:
-			lasers.append(Laser.new(position, angle_to_mouse, GREEN_LASER, 1))
-			lasers.append(Laser.new(position - Vector2(15, 30).rotated(deg2rad(angle_to_mouse)), angle_to_mouse, GREEN_LASER, 1 + pierce_modifier))
-			lasers.append(Laser.new(position + Vector2(-15, 30).rotated(deg2rad(angle_to_mouse)), angle_to_mouse, GREEN_LASER, 1 + pierce_modifier))
-	for i in lasers:
-		scene_root.add_child(i)
+	if time_since_last_fired >= weapon_cooldown:
+		time_since_last_fired = 0.0
+		var lasers = []
+		match glasses_type:
+			GLASSES1: 
+				lasers.append(Laser.new(position, angle_to_mouse, RED_LASER, 2 + pierce_modifier))
+				lasers.append(Laser.new(position, angle_to_mouse - 15, RED_LASER, 2 + pierce_modifier))
+				lasers.append(Laser.new(position, angle_to_mouse + 15, RED_LASER, 2 + pierce_modifier))
+			GLASSES2:
+				lasers.append(Laser.new(position, angle_to_mouse, GREEN_LASER, 1))
+				lasers.append(Laser.new(position - Vector2(15, 30).rotated(deg2rad(angle_to_mouse)), angle_to_mouse, GREEN_LASER, 1 + pierce_modifier))
+				lasers.append(Laser.new(position + Vector2(-15, 30).rotated(deg2rad(angle_to_mouse)), angle_to_mouse, GREEN_LASER, 1 + pierce_modifier))
+		for i in lasers:
+			scene_root.add_child(i)
 
 func _process(delta):
+	if time_since_last_fired < weapon_cooldown:
+		time_since_last_fired += delta
+	
 	if scene_root.enemies_left == 0:
 		hp += hp_modifier - hp
 	update_animation(round(angle_to_mouse / 90) * 90)

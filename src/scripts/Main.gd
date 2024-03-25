@@ -22,6 +22,8 @@ var robot_enemies = [[],[]]
 var r_pathfollows = robot_enemies[0]; var r_instances = robot_enemies[1]
 var eye_enemies = []
 
+var gfx = true
+
 var current_round = 0
 var spawn_queue = 0
 var enemies_left = 0
@@ -30,6 +32,15 @@ var time_since_last_spawn = time_between_spawns
 
 var score = 0
 var cash = 0
+
+func _ready():
+	var settings_file = File.new()
+	settings_file.open("user://settings.dat", File.READ)
+	gfx = bool(settings_file.get_8())
+	settings_file.close()
+	
+	if gfx == false:
+		env.environment = preload("res://src/res/NoEffectsEnvironment.tres")
 
 func _input(event):
 	if event is InputEventKey:
@@ -51,11 +62,11 @@ func _process(delta):
 		spawn_queue -= 1
 		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		time_since_last_spawn = 0.0
-	
-	if enemies_left == 0 and not env.blurred:
-		env.blur(env.FADE_IN, 3.0, delta)
-	elif enemies_left != 0:
-		env.blur(env.FADE_OUT, 3.0, delta)
+	if gfx == true:
+		if enemies_left == 0 and not env.blurred:
+			env.blur(env.FADE_IN, 3.0, delta)
+		elif enemies_left != 0:
+			env.blur(env.FADE_OUT, 3.0, delta)
 
 func call_next_round():
 	var amt_of_robots = rand_range(10.0, 50.0) * (current_round * 0.1)

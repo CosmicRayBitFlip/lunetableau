@@ -121,7 +121,6 @@ align = 1
 margin_top = 94.0
 margin_right = 204.0
 margin_bottom = 134.0
-toggle_mode = false
 text = "Autofire"
 
 [node name="BackButton" type="Button" parent="SettingsMenuAnchor/SettingsGUI"]
