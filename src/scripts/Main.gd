@@ -57,7 +57,7 @@ func _input(event):
 
 func _process(delta):
 	time_since_last_spawn += delta
-	if spawn_queue and time_since_last_spawn > 1.0:
+	if spawn_queue and time_since_last_spawn > time_between_spawns:
 		spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr])
 		spawn_queue -= 1
 		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
@@ -71,6 +71,8 @@ func _process(delta):
 func call_next_round():
 	var amt_of_robots = rand_range(10.0, 50.0) * (current_round * 0.1)
 	amt_of_robots = int(clamp(amt_of_robots, 5.0, 100.0))
+	time_between_spawns = 1.0/(1.0 + (amt_of_robots / 10))
+	print(time_between_spawns)
 	spawn_queue = amt_of_robots
 	enemies_left = spawn_queue
 	

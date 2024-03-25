@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var scene_root = $'..'
+onready var death_ui = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
 
 const speed = 100
 # direction constants
@@ -36,6 +37,8 @@ func _ready():
 	settings_file.get_8() # discard first value
 	autofire = bool(settings_file.get_8())
 	settings_file.close()
+	
+	death_ui.hide()
 
 func _input(event):
 	if event is InputEventKey or event is InputEventMouseButton:
@@ -105,6 +108,7 @@ func damage():
 	hp -= 1
 	if hp <= 0:
 		hide()
+		death_ui.show()
 
 
 func _on_collision_with_laser(body):

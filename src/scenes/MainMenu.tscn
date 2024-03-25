@@ -39,8 +39,8 @@ alignment = 1
 script = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="TitleGUI"]
-margin_right = 118.0
-margin_bottom = 46.0
+margin_right = 117.0
+margin_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "LUNÉTABLEAU
@@ -48,23 +48,23 @@ text = "LUNÉTABLEAU
 align = 1
 
 [node name="Version" type="Label" parent="TitleGUI"]
-margin_top = 49.0
-margin_right = 118.0
-margin_bottom = 70.5
+margin_top = 51.0
+margin_right = 117.0
+margin_bottom = 73.0
 text = " a.0.2"
 align = 1
 valign = 1
 
 [node name="StartButton" type="Button" parent="TitleGUI"]
-margin_top = 75.0
-margin_right = 118.0
-margin_bottom = 102.5
+margin_top = 77.0
+margin_right = 117.0
+margin_bottom = 105.0
 text = "Start Game"
 
 [node name="SettingsButton" type="Button" parent="TitleGUI"]
-margin_top = 106.0
-margin_right = 118.0
-margin_bottom = 133.5
+margin_top = 109.0
+margin_right = 117.0
+margin_bottom = 137.0
 text = "Settings"
 
 [node name="SettingsScreenBoundary" type="ReferenceRect" parent="."]
@@ -84,49 +84,48 @@ use_top_left = true
 
 [node name="SettingsGUI" type="VBoxContainer" parent="SettingsMenuAnchor"]
 margin_left = -102.0
-margin_top = -83.0
-margin_right = 102.0
-margin_bottom = 82.0
+margin_top = -84.0
+margin_right = 101.0
+margin_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 script = ExtResource( 4 )
 
 [node name="VideoLabel" type="Label" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = -1.0
-margin_right = 204.0
-margin_bottom = 20.5
+margin_right = 203.0
+margin_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Video"
 align = 1
 
 [node name="GFXSwitch" type="CheckButton" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = 25.0
-margin_right = 204.75
-margin_bottom = 65.0
+margin_top = 26.0
+margin_right = 203.0
+margin_bottom = 66.0
 pressed = true
 text = "Graphical Effects"
 
 [node name="AccessibilityLabel" type="Label" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = 68.0
-margin_right = 204.0
-margin_bottom = 89.5
+margin_top = 70.0
+margin_right = 203.0
+margin_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Accessibility"
 align = 1
 
 [node name="AutofireSwitch" type="CheckButton" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = 94.0
-margin_right = 204.0
-margin_bottom = 134.0
+margin_top = 96.0
+margin_right = 203.0
+margin_bottom = 136.0
 text = "Autofire"
 
 [node name="BackButton" type="Button" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = 138.0
-margin_right = 204.0
-margin_bottom = 165.5
+margin_top = 140.0
+margin_right = 203.0
+margin_bottom = 168.0
 text = "Back"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SettingsMenuAnchor"]
