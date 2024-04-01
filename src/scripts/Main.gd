@@ -43,6 +43,10 @@ func _input(event):
 		if Input.is_action_just_pressed("call_next_round"):
 			if enemies_left == 0:
 				call_next_round()
+			if has_node("Camera"):
+				var temp = $Camera
+				remove_child($Camera)
+				$Player.add_child(temp)
 
 func _process(delta):
 	time_since_last_spawn += delta

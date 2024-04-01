@@ -62,6 +62,9 @@ func _process(delta):
 	update_animation(round(angle_to_mouse / 90) * 90)
 	velocity = process_movement(Vector2(input_vector.x, input_vector.y), delta)
 	move_and_collide(velocity)
+	
+	if has_node("Camera"):
+		$Camera.rotation += (TAU / 600) * scene_root.current_round
 
 func process_movement(input_vec, delta):
 	if input_vec:
