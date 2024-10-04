@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/res/playerpaths/RedPath1.tres" type="Curve2D" id=1]
-[ext_resource path="res://src/res/playerpaths/BluePath1.tres" type="Curve2D" id=2]
-[ext_resource path="res://src/res/playerpaths/WhitePath1.tres" type="Curve2D" id=3]
-[ext_resource path="res://src/res/playerpaths/YellowPath1.tres" type="Curve2D" id=4]
+[ext_resource path="res://src/res/enemypaths/RedPath1.tres" type="Curve2D" id=1]
+[ext_resource path="res://src/res/enemypaths/BluePath1.tres" type="Curve2D" id=2]
+[ext_resource path="res://src/res/enemypaths/WhitePath1.tres" type="Curve2D" id=3]
+[ext_resource path="res://src/res/enemypaths/YellowPath1.tres" type="Curve2D" id=4]
 
 [node name="PathManager" type="Node2D"]
 
