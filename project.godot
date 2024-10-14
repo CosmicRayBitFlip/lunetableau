@@ -44,6 +44,10 @@ window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[global]
+
+theme=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -142,3 +146,4 @@ vram_compression/import_etc2=false
 gles2/compatibility/disable_half_float.iOS=false
 environment/default_clear_color=Color( 0.054902, 0, 0.176471, 1 )
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

@@ -8,7 +8,7 @@ enum {
 var effects_lock:bool = false
 var blurred:bool = false
 
-func blur(fade_in_or_out:int, time:float, delta:float): # TODO: not use a pre provided delta value for delta time
+func blur(fade_in_or_out:int, time:float):
 	if not effects_lock:
 		blurred = not fade_in_or_out
 		effects_lock = true
@@ -22,6 +22,7 @@ func blur(fade_in_or_out:int, time:float, delta:float): # TODO: not use a pre pr
 				desired_value = 0.0
 		
 		while sigma < time:
+			var delta = get_process_delta_time()
 			environment.dof_blur_near_amount = desired_value * (sigma / time)
 			sigma += delta
 		

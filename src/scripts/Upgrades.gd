@@ -21,9 +21,9 @@ func _process(delta):
 	else:
 		hide()
 	
-	damage_level.text    = "Lv. " + str(player.attack_modifier)
+	damage_level.text    = "Lv. " + str(player.damage_modifier)
 	pierce_level.text    = "Lv. " + str(player.pierce_modifier)
-	hp_level.text        = "Lv. " + str(player.hp_modifier -5)
+	hp_level.text        = "Lv. " + str(player.hp_modifier)
 	
 	damage_price_ui.text = "$" + str(10 * (upgrade_count[UpgradeCount.DAMAGE] + 1))
 	pierce_price_ui.text = "$" + str(10 * (upgrade_count[UpgradeCount.PIERCE] + 1))
@@ -31,7 +31,7 @@ func _process(delta):
 
 func _on_DamageUpgrade_button_down():
 	if scene_root.cash >= 10 * (upgrade_count[UpgradeCount.DAMAGE] + 1):
-		player.attack_modifier += 1
+		player.damage_modifier += 1
 		scene_root.cash -= 10 * (upgrade_count[UpgradeCount.DAMAGE] + 1)
 		upgrade_count[UpgradeCount.DAMAGE] += 1
 

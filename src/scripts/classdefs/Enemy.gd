@@ -64,7 +64,7 @@ func damage(damage_amt):
 func _on_collision_with_laser(body):
 	if body is Laser:
 		if body.hasnt_collided_with($'.'):
-			damage(5 + player.attack_modifier)
+			damage(5 + player.damage_modifier)
 
 func create_laser():
 	pass

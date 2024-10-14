@@ -4,6 +4,8 @@ onready var scene_root = $'..'
 onready var death_ui = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
 
 const speed = 100
+const default_hp = 5
+
 # direction constants
 const FRONT = 90.0
 const BACK = -90.0
@@ -19,7 +21,7 @@ const weapon_cooldown = 0.125
 var time_since_last_fired = weapon_cooldown
 var autofire = false
 
-var hp = 5
+var hp = default_hp
 
 var input_vector:Vector2 = Vector2.ZERO
 var velocity:Vector2 = Vector2.ZERO
@@ -27,9 +29,9 @@ var mouse_pos:Vector2; var angle_to_mouse:float
 var glasses_type:int = GLASSES1
 enum {GLASSES1, GLASSES2, GLASSES3, GLASSES4}
 
-var attack_modifier = 0
+var damage_modifier = 0
 var pierce_modifier = 0
-var hp_modifier = 5
+var hp_modifier = 0
 
 func _ready():
 	var settings_file = File.new()
@@ -76,8 +78,8 @@ func _process(delta):
 		time_since_last_fired += delta
 		if (Input.is_action_pressed("shoot") and autofire):
 			shoot()
-	if scene_root.enemies_left == 0:
-		hp += hp_modifier - hp
+	if hp != hp_modifier + default_hp and scene_root.enemies_left == 0:
+		hp = hp_modifier + default_hp
 	update_animation(round(angle_to_mouse / 90) * 90)
 	velocity = process_movement(Vector2(input_vector.x, input_vector.y), delta)
 	move_and_collide(velocity)

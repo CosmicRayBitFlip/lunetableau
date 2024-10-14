@@ -16,7 +16,7 @@ const spawn_points = PoolVector2Array([
 ])
 var spawn_point_ptr:int = 0
 var RobotEnemy = preload("res://src/scenes/RobotEnemy.tscn")
-var EyeEnemy = preload("res://src/scenes/EyeEnemy.tscn")
+#var EyeEnemy = preload("res://src/scenes/EyeEnemy.tscn")
 
 var robot_enemies = [[],[]]
 var r_pathfollows = robot_enemies[0]; var r_instances = robot_enemies[1]
@@ -46,7 +46,8 @@ func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("debug_spawn_enemy"):
 			if event.shift:
-				spawn_eye_robot(spawn_points[spawn_point_ptr])
+				#spawn_eye_robot(spawn_points[spawn_point_ptr])
+				pass
 			else:
 				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr])
 			enemies_left += 1
@@ -64,9 +65,9 @@ func _process(delta):
 		time_since_last_spawn = 0.0
 	if gfx == true:
 		if enemies_left == 0 and not env.blurred:
-			env.blur(env.FADE_IN, 3.0, delta)
+			env.blur(env.FADE_IN, 3.0)
 		elif enemies_left != 0:
-			env.blur(env.FADE_OUT, 3.0, delta)
+			env.blur(env.FADE_OUT, 3.0)
 
 func call_next_round():
 	var amt_of_robots = rand_range(10.0, 50.0) * (current_round * 0.1)
@@ -90,10 +91,10 @@ func spawn_normal_robot(team:int, spawn_pos:Vector2):
 	r_pathfollows[-1].add_child(r_instances[-1])
 	r_instances[-1].spawn(spawn_pos)
 
-func spawn_eye_robot(spawn_pos:Vector2):
-	eye_enemies.append(EyeEnemy.instance())
-	add_child(eye_enemies[-1])
-	eye_enemies[-1].spawn(spawn_pos)
+#func spawn_eye_robot(spawn_pos:Vector2):
+#	eye_enemies.append(EyeEnemy.instance())
+#	add_child(eye_enemies[-1])
+#	eye_enemies[-1].spawn(spawn_pos)
 
 # ignore this function please nothing calls it
 # i just like preservation

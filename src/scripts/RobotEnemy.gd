@@ -7,12 +7,13 @@ onready var path_curve:Curve2D = path.curve
 func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):
 		$Hitbox.connect("body_entered", $".", "_on_collision_with_laser")
+	var closest_path_offset = path_curve.get_closest_offset(path.to_local(to_global(position)))
+	path_follow.offset = closest_path_offset
 	position = get_parent().to_local(spawn_pos)
 	hp = 10 + scene_root.current_round - 1
 	speed = 50
 	spawned = true
 	
-	#var closest_point = path_curve.get_closest_point(position.move_toward(direction, 1))
 
 func _think_movement(delta):
 	if position != Vector2.ZERO:
