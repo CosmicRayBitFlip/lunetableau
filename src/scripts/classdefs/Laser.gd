@@ -9,8 +9,8 @@ var length = 10
 var direction = Vector2.UP
 var color:Color
 
-var speed = 800
-var pierce = 2
+var speed       = 800
+var pierce      = 2
 var expire_time = 2.0
 var bodies_already_collided_with = []
 
@@ -32,14 +32,14 @@ func _init(
 	speed = spd
 
 func _ready():
-	var laser_line:Line2D = Line2D.new()
+	var laser_line:Line2D    = Line2D.new()
 	laser_line.default_color = color
-	laser_line.width = width
+	laser_line.width         = width
 	laser_line.add_point(Vector2(0,-length)); laser_line.add_point(Vector2(0, length))
 	add_child(laser_line)
 	
-	var collision_box = CollisionShape2D.new()
-	collision_box.shape = RectangleShape2D.new()
+	var collision_box           = CollisionShape2D.new()
+	collision_box.shape         = RectangleShape2D.new()
 	collision_box.shape.extents = Vector2(width / 2, length / 2)
 	add_child(collision_box)
 

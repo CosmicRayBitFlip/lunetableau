@@ -6,7 +6,7 @@ enum {
 }
 
 var effects_lock:bool = false
-var blurred:bool = false
+var blurred:bool      = false
 
 func blur(fade_in_or_out:int, time:float):
 	if not effects_lock:

@@ -1,7 +1,8 @@
 extends Node2D
 
-onready var main_screen = $"../TitleScreenBoundary"
+onready var main_screen     = $"../TitleScreenBoundary"
 onready var settings_screen = $"../SettingsScreenBoundary"
+onready var keybind_screen  = $"../KeybindScreenBoundary"
 
 func _on_SettingsButton_pressed():
 	position = settings_screen.rect_position

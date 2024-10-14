@@ -1,8 +1,8 @@
 extends Enemy
 
 onready var path_follow:PathFollow2D = get_parent()
-onready var path:Path2D = path_follow.get_parent()
-onready var path_curve:Curve2D = path.curve
+onready var path:Path2D              = path_follow.get_parent()
+onready var path_curve:Curve2D       = path.curve
 
 func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):
@@ -10,9 +10,9 @@ func spawn(spawn_pos:Vector2):
 	var closest_path_offset = path_curve.get_closest_offset(path.to_local(to_global(position)))
 	path_follow.offset = closest_path_offset
 	position = get_parent().to_local(spawn_pos)
-	hp = 10 + scene_root.current_round - 1
-	speed = 50
-	spawned = true
+	hp       = 10 + scene_root.current_round - 1
+	speed    = 50
+	spawned  = true
 	
 
 func _think_movement(delta):

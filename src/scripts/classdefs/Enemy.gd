@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 class_name Enemy
 
-onready var scene_root = get_tree().get_current_scene()
+onready var scene_root             = get_tree().get_current_scene()
 onready var player:KinematicBody2D = scene_root.get_node("Player")
 
 var hp:int
@@ -11,8 +11,8 @@ var spawned:bool = false
 
 enum {WHITE, RED, BLUE, YELLOW} # teams
 
-var time_since_last_shoot:float = 2.0
-var shoot_fatigue = 2.0
+var shoot_fatigue               = 2.0
+var time_since_last_shoot:float = shoot_fatigue
 
 func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):
@@ -56,8 +56,8 @@ func damage(damage_amt):
 	hp -= damage_amt
 	if hp <= 0:
 		hp = 1 << 63
-		scene_root.score += 50 + scene_root.current_round - 1
-		scene_root.cash += 10
+		scene_root.score        += 50 + scene_root.current_round - 1
+		scene_root.cash         += 10
 		scene_root.enemies_left -= 1
 		queue_free()
 

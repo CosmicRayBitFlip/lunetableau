@@ -1,20 +1,20 @@
 extends KinematicBody2D
 
 onready var scene_root = $'..'
-onready var death_ui = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
+onready var death_ui   = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
 
-const speed = 100
+const speed      = 100
 const default_hp = 5
 
 # direction constants
 const FRONT = 90.0
-const BACK = -90.0
-const LEFT = 180.0
+const BACK  = -90.0
+const LEFT  = 180.0
 const RIGHT = 0.0
 
-const RED_LASER = Color(1, 0.8, 0.8, 1)
-const GREEN_LASER = Color(0.8, 1, 0.8, 1)
-const BLUE_LASER = Color(0.8, 0.8, 1, 1)
+const RED_LASER    = Color(1, 0.8, 0.8, 1)
+const GREEN_LASER  = Color(0.8, 1, 0.8, 1)
+const BLUE_LASER   = Color(0.8, 0.8, 1, 1)
 const YELLOW_LASER = Color(1, 1, 0.8, 1)
 
 const weapon_cooldown = 0.125
@@ -24,14 +24,15 @@ var autofire = false
 var hp = default_hp
 
 var input_vector:Vector2 = Vector2.ZERO
-var velocity:Vector2 = Vector2.ZERO
+var velocity:Vector2     = Vector2.ZERO
 var mouse_pos:Vector2; var angle_to_mouse:float
+
 var glasses_type:int = GLASSES1
 enum {GLASSES1, GLASSES2, GLASSES3, GLASSES4}
 
 var damage_modifier = 0
 var pierce_modifier = 0
-var hp_modifier = 0
+var hp_modifier     = 0
 
 func _ready():
 	var settings_file = File.new()
@@ -43,7 +44,7 @@ func _ready():
 	death_ui.hide()
 
 func _input(event):
-	if event is InputEventKey or event is InputEventMouseButton:
+	if event.is_action_type():
 		input_vector.x = Input.get_axis("left", "right")
 		input_vector.y = Input.get_axis("up", "down")
 		
