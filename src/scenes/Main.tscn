@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scenes/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scripts/EnvironmentEffects.gd" type="Script" id=2]
@@ -7,7 +7,21 @@
 [ext_resource path="res://src/scenes/PathManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=8]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="SegmentShape2D" id=1]
+a = Vector2( 262, -147 )
+b = Vector2( -262, -147 )
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 262, 147 )
+b = Vector2( -262, 147 )
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( -262, -147 )
+b = Vector2( -262, 147 )
+
+[sub_resource type="SegmentShape2D" id=4]
+a = Vector2( 262, -147 )
+b = Vector2( 262, 147 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 6 )
@@ -35,6 +49,18 @@ zoom = Vector2( 0.41, 0.41 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 
-[node name="Boundary" type="TileMap" parent="."]
-tile_set = SubResource( 1 )
-format = 1
+[node name="GameBoundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="UpperBound" type="CollisionShape2D" parent="GameBoundary"]
+shape = SubResource( 1 )
+
+[node name="LowerBound" type="CollisionShape2D" parent="GameBoundary"]
+shape = SubResource( 2 )
+
+[node name="LeftBound" type="CollisionShape2D" parent="GameBoundary"]
+shape = SubResource( 3 )
+
+[node name="RightBound" type="CollisionShape2D" parent="GameBoundary"]
+shape = SubResource( 4 )

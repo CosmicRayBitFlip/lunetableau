@@ -17,11 +17,15 @@ const GREEN_LASER  = Color(0.8, 1, 0.8, 1)
 const BLUE_LASER   = Color(0.8, 0.8, 1, 1)
 const YELLOW_LASER = Color(1, 1, 0.8, 1)
 
-const weapon_cooldown = 0.125
+const weapon_cooldown     = 0.125
 var time_since_last_fired = weapon_cooldown
-var autofire = false
+var autofire              = false
 
 var hp = default_hp
+
+var damage_modifier = 0
+var pierce_modifier = 0
+var hp_modifier     = 0
 
 var input_vector:Vector2 = Vector2.ZERO
 var velocity:Vector2     = Vector2.ZERO
@@ -30,9 +34,7 @@ var mouse_pos:Vector2; var angle_to_mouse:float
 var glasses_type:int = GLASSES1
 enum {GLASSES1, GLASSES2, GLASSES3, GLASSES4}
 
-var damage_modifier = 0
-var pierce_modifier = 0
-var hp_modifier     = 0
+var last_collision:KinematicCollision2D
 
 func _ready():
 	var settings_file = File.new()
@@ -83,7 +85,7 @@ func _process(delta):
 		hp = hp_modifier + default_hp
 	update_animation(round(angle_to_mouse / 90) * 90)
 	velocity = process_movement(Vector2(input_vector.x, input_vector.y), delta)
-	move_and_collide(velocity)
+	last_collision = move_and_collide(velocity)
 
 func process_movement(input_vec, delta):
 	if input_vec:
@@ -102,7 +104,7 @@ func update_animation(rounded_mouse_angle):
 			anim_type = "Back"
 		FRONT:
 			anim_type = "Front"
-	if input_vector:
+	if input_vector and last_collision == null:
 		$AnimationPlayer.play(anim_type + "Walk")
 	else:
 		$AnimationPlayer.play(anim_type + "Idle")
