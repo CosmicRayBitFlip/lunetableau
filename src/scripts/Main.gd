@@ -1,13 +1,14 @@
 extends Node2D
 
 onready var pathmgr = $PathManager
-onready var paths = [ # when accessing use `Enemy` team name constants
+onready var paths   = [ # when accessing use `Enemy` team name constants
 	$PathManager/WhitePath, 
 	$PathManager/RedPath, 
 	$PathManager/BluePath, 
 	$PathManager/YellowPath
 ]
-onready var env = $WorldEnvironment
+onready var env  = $WorldEnvironment
+
 const spawn_points = PoolVector2Array([
 	Vector2(0, -90),
 	Vector2(180, 0),
@@ -15,23 +16,25 @@ const spawn_points = PoolVector2Array([
 	Vector2(-180, 0)
 ])
 var spawn_point_ptr:int = 0
-var RobotEnemy = preload("res://src/scenes/RobotEnemy.tscn")
-var EyeEnemy = preload("res://src/scenes/EyeEnemy.tscn")
+
+var RobotEnemy    = preload("res://src/scenes/RobotEnemy.tscn")
+var EyeEnemy      = preload("res://src/scenes/EyeEnemy.tscn")
 
 var robot_enemies = [[],[]]
 var r_pathfollows = robot_enemies[0]; var r_instances = robot_enemies[1]
-var eye_enemies = []
+var eye_enemies   = []
 
 var gfx = true
 
-var current_round = 0
-var spawn_queue = 0
-var enemies_left = 0
-var time_between_spawns = 1.0
+var current_round         = 0
+var spawn_queue           = 0
+var enemies_left          = 0
+var time_between_spawns   = 1.0
 var time_since_last_spawn = time_between_spawns
 
 var score = 0
-var cash = 0
+var cash  = 0
+
 
 func _ready():
 	var settings_file = File.new()

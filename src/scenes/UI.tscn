@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scripts/DebugFPS.gd" type="Script" id=1]
 [ext_resource path="res://src/res/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/scripts/UI.gd" type="Script" id=3]
 [ext_resource path="res://src/scripts/Upgrades.gd" type="Script" id=4]
 [ext_resource path="res://src/scripts/DeathUI.gd" type="Script" id=5]
+[ext_resource path="res://src/scripts/CallNextRoundHint.gd" type="Script" id=6]
 
 [node name="GameUI" type="Control"]
 anchor_right = 0.4
@@ -81,13 +82,13 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="UpgradesLabel" type="Label" parent="Upgrades/UpgradesList"]
-margin_right = 167.0
+margin_right = 254.0
 margin_bottom = 22.0
 text = "Upgrades:"
 
 [node name="Damage" type="HBoxContainer" parent="Upgrades/UpgradesList"]
 margin_top = 26.0
-margin_right = 167.0
+margin_right = 254.0
 margin_bottom = 54.0
 
 [node name="DamageUpgrade" type="Button" parent="Upgrades/UpgradesList/Damage"]
@@ -111,7 +112,7 @@ text = " $10"
 
 [node name="Pierce" type="HBoxContainer" parent="Upgrades/UpgradesList"]
 margin_top = 58.0
-margin_right = 167.0
+margin_right = 254.0
 margin_bottom = 86.0
 
 [node name="PierceUpgrade" type="Button" parent="Upgrades/UpgradesList/Pierce"]
@@ -135,7 +136,7 @@ text = " $10"
 
 [node name="HP" type="HBoxContainer" parent="Upgrades/UpgradesList"]
 margin_top = 90.0
-margin_right = 167.0
+margin_right = 254.0
 margin_bottom = 118.0
 
 [node name="HPUpgrade" type="Button" parent="Upgrades/UpgradesList/HP"]
@@ -159,9 +160,10 @@ text = " $10"
 
 [node name="dfghsdfgihjdsfg" type="Label" parent="Upgrades/UpgradesList"]
 margin_top = 122.0
-margin_right = 167.0
+margin_right = 254.0
 margin_bottom = 144.0
-text = "Enter to call next round"
+text = "(call_next_round) to call next round"
+script = ExtResource( 6 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
