@@ -1,2 +1,3 @@
-Copyright 2024 KOD Studio. All rights reserved.
-This license may be replaced by KOD Studio at any time and for any reason, including for replacement by a more permissive license.
+The source code of this game is available under the GNU General Public License v3.0. See gpl.txt for a full copy of the license and https://github.com/CosmicRayBitFlip/lunetableau for the source code.
+
+Assets (game art, music, sounds etc.) © KOD Studio. All rights reserved.
