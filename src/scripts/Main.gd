@@ -10,10 +10,10 @@ onready var paths   = [ # when accessing use `Enemy` team name constants
 onready var env  = $WorldEnvironment
 
 const spawn_points = PoolVector2Array([
-	Vector2(0, -90),
-	Vector2(180, 0),
-	Vector2(0, 90),
-	Vector2(-180, 0)
+	Vector2(0, -225),
+	Vector2(450, 0),
+	Vector2(0, 225),
+	Vector2(-450, 0)
 ])
 var spawn_point_ptr:int = 0
 

@@ -16,7 +16,7 @@ func _ready():
 	speed = 15
 
 func _update_animation(delta):
-	var angle_to_player = rad2deg(get_angle_to(player.position))
+	var angle_to_player = rad2deg(get_angle_to(player.global_position))
 	var converted_angle = convert_angle(angle_to_player)
 	
 	if converted_angle != abs(converted_angle):

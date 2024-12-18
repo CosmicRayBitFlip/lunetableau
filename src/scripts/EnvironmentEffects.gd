@@ -8,7 +8,7 @@ enum {
 var effects_lock:bool = false
 var blurred:bool      = false
 
-func blur(fade_in_or_out:int, time:float):
+func blur(fade_in_or_out:int, time:float): # doesn't work lolz
 	if not effects_lock:
 		blurred = not fade_in_or_out
 		effects_lock = true

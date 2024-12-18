@@ -1,4 +1,4 @@
-extends KinematicBody2D
+  extends KinematicBody2D
 
 class_name Enemy
 
@@ -17,7 +17,7 @@ var time_since_last_shoot:float = shoot_fatigue
 func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):
 		$Hitbox.connect("body_entered", $".", "_on_collision_with_laser")
-	position = spawn_pos
+	global_position = spawn_pos
 	spawned = true
 
 func _process(delta):
@@ -35,9 +35,8 @@ func _update_animation(delta):
 
 func _think_shoot():
 	if time_since_last_shoot > shoot_fatigue and player.hp > 0:
-		var angle_to_player = rad2deg(get_angle_to(player.position))
+		var angle_to_player = rad2deg(get_angle_to(player.global_position))
 		var lasers = []
-
 		lasers.append(
 			Laser.new(
 				position + Vector2(15, 0).rotated(deg2rad(angle_to_player)), 
@@ -45,7 +44,7 @@ func _think_shoot():
 				Color(1,1,1,1), 
 				2, 
 				0b1, 
-				300
+				750
 			)
 		)
 		for i in lasers:

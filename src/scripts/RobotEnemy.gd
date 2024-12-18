@@ -9,7 +9,7 @@ func spawn(spawn_pos:Vector2):
 		$Hitbox.connect("body_entered", $".", "_on_collision_with_laser")
 	var closest_path_offset = path_curve.get_closest_offset(path.to_local(to_global(position)))
 	path_follow.offset = closest_path_offset
-	position = get_parent().to_local(spawn_pos)
+	global_position = spawn_pos
 	hp       = 10 + scene_root.current_round - 1
 	speed    = 50
 	spawned  = true
@@ -17,7 +17,7 @@ func spawn(spawn_pos:Vector2):
 
 func _think_movement(delta):
 	if position != Vector2.ZERO:
-		position = position.move_toward(Vector2.ZERO, speed * delta)
+		position = position.move_toward(Vector2.ZERO, speed * delta * (scene_root.current_round / 10 + 1))
 	else:
 		path_follow.offset += speed * delta * (scene_root.current_round / 10 + 1)
 
@@ -40,7 +40,7 @@ func _update_animation(delta):
 
 func _think_shoot(): # refactor this later
 	if time_since_last_shoot > shoot_fatigue and player.hp > 0:
-		var angle_to_player = rad2deg(get_angle_to(player.position))
+		var angle_to_player = rad2deg(get_angle_to(player.global_position))
 		var lasers = []
 
 		lasers.append(
@@ -50,7 +50,7 @@ func _think_shoot(): # refactor this later
 				Color(1,1,1,1), 
 				2, 
 				0b1, 
-				300
+				750
 			)
 		)
 		for i in lasers:

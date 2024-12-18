@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var scene_root = $'..'
 onready var death_ui   = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
 
-const speed      = 100
+const speed      = 250
 const default_hp = 5
 
 # direction constants

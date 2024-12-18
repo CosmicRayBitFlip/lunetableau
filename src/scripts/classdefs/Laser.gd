@@ -9,7 +9,7 @@ var length = 10
 var direction = Vector2.UP
 var color:Color
 
-var speed       = 800
+var speed       = 2000
 var pierce      = 2
 var expire_time = 2.0
 var bodies_already_collided_with = []
@@ -20,7 +20,7 @@ func _init(
 	laser_color = Color(1, 1, 1, 1), 
 	laser_pierce:int = 2, 
 	coll_layer:int = 0b10,
-	spd:int = 800
+	spd:int = 2000
 ):
 	rotation_degrees = dir - 90
 	direction = dir

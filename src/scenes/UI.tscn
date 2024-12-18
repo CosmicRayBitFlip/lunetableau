@@ -8,8 +8,8 @@
 [ext_resource path="res://src/scripts/CallNextRoundHint.gd" type="Script" id=6]
 
 [node name="GameUI" type="Control"]
-anchor_right = 0.4
-anchor_bottom = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
 theme = ExtResource( 2 )
 script = ExtResource( 3 )
 
@@ -18,34 +18,34 @@ anchor_right = 1.0
 alignment = 1
 
 [node name="RoundCounter" type="Label" parent="TopBar"]
-margin_left = 197.0
-margin_right = 260.0
-margin_bottom = 22.0
+margin_left = 512.0
+margin_right = 667.0
+margin_bottom = 54.0
 grow_horizontal = 2
 text = "Round 0"
 align = 1
 
 [node name="VSeparator" type="VSeparator" parent="TopBar"]
-margin_left = 264.0
-margin_right = 268.0
-margin_bottom = 22.0
+margin_left = 671.0
+margin_right = 675.0
+margin_bottom = 54.0
 
 [node name="ScoreCounter" type="Label" parent="TopBar"]
-margin_left = 272.0
-margin_right = 283.0
-margin_bottom = 22.0
+margin_left = 679.0
+margin_right = 706.0
+margin_bottom = 54.0
 grow_horizontal = 2
 text = "0"
 
-[node name="hi wat u doin here" type="VSeparator" parent="TopBar"]
-margin_left = 287.0
-margin_right = 291.0
-margin_bottom = 22.0
+[node name="VSeparator2" type="VSeparator" parent="TopBar"]
+margin_left = 710.0
+margin_right = 714.0
+margin_bottom = 54.0
 
 [node name="Cash" type="Label" parent="TopBar"]
-margin_left = 295.0
-margin_right = 315.0
-margin_bottom = 22.0
+margin_left = 718.0
+margin_right = 768.0
+margin_bottom = 54.0
 grow_horizontal = 2
 text = "$0"
 
@@ -82,86 +82,86 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="UpgradesLabel" type="Label" parent="Upgrades/UpgradesList"]
-margin_right = 254.0
-margin_bottom = 22.0
+margin_right = 646.0
+margin_bottom = 54.0
 text = "Upgrades:"
 
 [node name="Damage" type="HBoxContainer" parent="Upgrades/UpgradesList"]
-margin_top = 26.0
-margin_right = 254.0
-margin_bottom = 54.0
+margin_top = 58.0
+margin_right = 646.0
+margin_bottom = 118.0
 
 [node name="DamageUpgrade" type="Button" parent="Upgrades/UpgradesList/Damage"]
-margin_right = 75.0
-margin_bottom = 28.0
+margin_right = 165.0
+margin_bottom = 60.0
 text = "Damage"
 
 [node name="Level" type="Label" parent="Upgrades/UpgradesList/Damage"]
-margin_left = 79.0
+margin_left = 169.0
 margin_top = 3.0
-margin_right = 116.0
-margin_bottom = 25.0
+margin_right = 261.0
+margin_bottom = 57.0
 text = "Lv. 0"
 
 [node name="Price" type="Label" parent="Upgrades/UpgradesList/Damage"]
-margin_left = 120.0
+margin_left = 265.0
 margin_top = 3.0
-margin_right = 148.0
-margin_bottom = 25.0
+margin_right = 336.0
+margin_bottom = 57.0
 text = " $10"
 
 [node name="Pierce" type="HBoxContainer" parent="Upgrades/UpgradesList"]
-margin_top = 58.0
-margin_right = 254.0
-margin_bottom = 86.0
+margin_top = 122.0
+margin_right = 646.0
+margin_bottom = 182.0
 
 [node name="PierceUpgrade" type="Button" parent="Upgrades/UpgradesList/Pierce"]
-margin_right = 58.0
-margin_bottom = 28.0
+margin_right = 129.0
+margin_bottom = 60.0
 text = "Pierce"
 
 [node name="Level" type="Label" parent="Upgrades/UpgradesList/Pierce"]
-margin_left = 62.0
+margin_left = 133.0
 margin_top = 3.0
-margin_right = 99.0
-margin_bottom = 25.0
+margin_right = 225.0
+margin_bottom = 57.0
 text = "Lv. 0"
 
 [node name="Price" type="Label" parent="Upgrades/UpgradesList/Pierce"]
-margin_left = 103.0
+margin_left = 229.0
 margin_top = 3.0
-margin_right = 131.0
-margin_bottom = 25.0
+margin_right = 300.0
+margin_bottom = 57.0
 text = " $10"
 
 [node name="HP" type="HBoxContainer" parent="Upgrades/UpgradesList"]
-margin_top = 90.0
-margin_right = 254.0
-margin_bottom = 118.0
+margin_top = 186.0
+margin_right = 646.0
+margin_bottom = 246.0
 
 [node name="HPUpgrade" type="Button" parent="Upgrades/UpgradesList/HP"]
-margin_right = 69.0
-margin_bottom = 28.0
+margin_right = 151.0
+margin_bottom = 60.0
 text = "Max HP"
 
 [node name="Level" type="Label" parent="Upgrades/UpgradesList/HP"]
-margin_left = 73.0
+margin_left = 155.0
 margin_top = 3.0
-margin_right = 110.0
-margin_bottom = 25.0
+margin_right = 247.0
+margin_bottom = 57.0
 text = "Lv. 0"
 
 [node name="Price" type="Label" parent="Upgrades/UpgradesList/HP"]
-margin_left = 114.0
+margin_left = 251.0
 margin_top = 3.0
-margin_right = 142.0
-margin_bottom = 25.0
+margin_right = 322.0
+margin_bottom = 57.0
 text = " $10"
 
 [node name="dfghsdfgihjdsfg" type="Label" parent="Upgrades/UpgradesList"]
-margin_top = 122.0
-margin_right = 254.0
-margin_bottom = 144.0
+margin_top = 250.0
+margin_right = 646.0
+margin_bottom = 304.0
 text = "(call_next_round) to call next round"
 script = ExtResource( 6 )
 
@@ -176,30 +176,30 @@ margin_bottom = 20.0
 use_top_left = true
 
 [node name="Dead" type="VBoxContainer" parent="CenterContainer"]
-margin_left = -34.0
-margin_top = -56.0
-margin_right = 34.0
-margin_bottom = 55.0
+margin_left = -86.0
+margin_top = -120.0
+margin_right = 85.0
+margin_bottom = 119.0
 alignment = 1
 script = ExtResource( 5 )
 
 [node name="Text" type="Label" parent="CenterContainer/Dead"]
-margin_right = 68.0
-margin_bottom = 47.0
+margin_right = 171.0
+margin_bottom = 111.0
 text = "You died!
 Restart?"
 align = 1
 
 [node name="RestartButton" type="Button" parent="CenterContainer/Dead"]
-margin_top = 51.0
-margin_right = 68.0
-margin_bottom = 79.0
+margin_top = 115.0
+margin_right = 171.0
+margin_bottom = 175.0
 text = "YES"
 
 [node name="HomeButton" type="Button" parent="CenterContainer/Dead"]
-margin_top = 83.0
-margin_right = 68.0
-margin_bottom = 111.0
+margin_top = 179.0
+margin_right = 171.0
+margin_bottom = 239.0
 text = "NO"
 
 [connection signal="button_down" from="Upgrades/UpgradesList/Damage/DamageUpgrade" to="Upgrades" method="_on_DamageUpgrade_button_down"]
