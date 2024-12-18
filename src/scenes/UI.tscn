@@ -35,6 +35,7 @@ margin_left = 679.0
 margin_right = 706.0
 margin_bottom = 54.0
 grow_horizontal = 2
+custom_colors/font_color = Color( 0.878431, 0.992157, 0.4, 1 )
 text = "0"
 
 [node name="VSeparator2" type="VSeparator" parent="TopBar"]
@@ -47,6 +48,7 @@ margin_left = 718.0
 margin_right = 768.0
 margin_bottom = 54.0
 grow_horizontal = 2
+custom_colors/font_color = Color( 0.4, 0.992157, 0.572549, 1 )
 text = "$0"
 
 [node name="FPS" type="Label" parent="."]
