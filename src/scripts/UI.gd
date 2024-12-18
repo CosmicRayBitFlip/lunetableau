@@ -7,6 +7,10 @@ onready var score_counter = $"TopBar/ScoreCounter"
 onready var cash_counter = $"TopBar/Cash"
 onready var hp_counter = $HP
 onready var enemy_counter = $EnemiesLeft
+onready var pause_ui = $PauseUIContainer/PauseUI
+
+func _ready():
+	pause_ui.hide()
 
 func _process(delta):
 	round_counter.text = "Round " + str(scene_root.current_round)
@@ -26,3 +30,9 @@ func _process(delta):
 		enemy_counter.text = "Enemies Left: " + str(scene_root.enemies_left)
 	else:
 		enemy_counter.hide()
+
+func _input(event):
+		if Input.is_action_just_pressed("pause"):
+			if player.hp > 0:
+				pause_ui.visible = not pause_ui.visible
+				get_tree().paused = not get_tree().paused

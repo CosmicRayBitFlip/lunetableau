@@ -7,6 +7,7 @@ onready var paths   = [ # when accessing use `Enemy` team name constants
 	$PathManager/BluePath, 
 	$PathManager/YellowPath
 ]
+onready var player = $Player
 onready var env  = $WorldEnvironment
 
 const spawn_points = PoolVector2Array([
@@ -42,9 +43,9 @@ func _ready():
 	gfx = bool(settings_file.get_8())
 	settings_file.close()
 	
-	if gfx == false:
+	if gfx == false: # this line might not work
 		env.environment = preload("res://src/res/NoEffectsEnvironment.tres")
-
+	
 func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("debug_spawn_enemy"):

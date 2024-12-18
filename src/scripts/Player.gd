@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 onready var scene_root = $'..'
-onready var death_ui   = scene_root.get_node_or_null("CanvasLayer/GameUI/CenterContainer/Dead")
+onready var death_ui   = scene_root.get_node_or_null("CanvasLayer/GameUI/PauseUIContainer/DeathUI")
 
 const speed      = 250
 const default_hp = 5
@@ -113,6 +113,7 @@ func damage():
 	hp -= 1
 	if hp <= 0:
 		hide()
+		get_tree().paused = true
 		death_ui.show()
 
 

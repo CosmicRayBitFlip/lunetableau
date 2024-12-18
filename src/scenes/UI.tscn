@@ -4,7 +4,7 @@
 [ext_resource path="res://src/res/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/scripts/UI.gd" type="Script" id=3]
 [ext_resource path="res://src/scripts/Upgrades.gd" type="Script" id=4]
-[ext_resource path="res://src/scripts/DeathUI.gd" type="Script" id=5]
+[ext_resource path="res://src/scripts/PauseUI.gd" type="Script" id=5]
 [ext_resource path="res://src/scripts/CallNextRoundHint.gd" type="Script" id=6]
 
 [node name="GameUI" type="Control"]
@@ -165,7 +165,7 @@ margin_bottom = 304.0
 text = "(call_next_round) to call next round"
 script = ExtResource( 6 )
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="PauseUIContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.3
 anchor_right = 0.5
@@ -175,7 +175,39 @@ margin_right = 40.0
 margin_bottom = 20.0
 use_top_left = true
 
-[node name="Dead" type="VBoxContainer" parent="CenterContainer"]
+[node name="PauseUI" type="VBoxContainer" parent="PauseUIContainer"]
+margin_left = -169.0
+margin_top = -123.0
+margin_right = 168.0
+margin_bottom = 123.0
+alignment = 1
+script = ExtResource( 5 )
+
+[node name="Text" type="Label" parent="PauseUIContainer/PauseUI"]
+margin_right = 337.0
+margin_bottom = 54.0
+text = "Game Paused"
+align = 1
+
+[node name="ResumeButton" type="Button" parent="PauseUIContainer/PauseUI"]
+margin_top = 58.0
+margin_right = 337.0
+margin_bottom = 118.0
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseUIContainer/PauseUI"]
+margin_top = 122.0
+margin_right = 337.0
+margin_bottom = 182.0
+text = "Restart Game"
+
+[node name="HomeButton" type="Button" parent="PauseUIContainer/PauseUI"]
+margin_top = 186.0
+margin_right = 337.0
+margin_bottom = 246.0
+text = "Exit to Main Menu"
+
+[node name="DeathUI" type="VBoxContainer" parent="PauseUIContainer"]
 margin_left = -86.0
 margin_top = -120.0
 margin_right = 85.0
@@ -183,20 +215,20 @@ margin_bottom = 119.0
 alignment = 1
 script = ExtResource( 5 )
 
-[node name="Text" type="Label" parent="CenterContainer/Dead"]
+[node name="Text" type="Label" parent="PauseUIContainer/DeathUI"]
 margin_right = 171.0
 margin_bottom = 111.0
 text = "You died!
 Restart?"
 align = 1
 
-[node name="RestartButton" type="Button" parent="CenterContainer/Dead"]
+[node name="RestartButton" type="Button" parent="PauseUIContainer/DeathUI"]
 margin_top = 115.0
 margin_right = 171.0
 margin_bottom = 175.0
 text = "YES"
 
-[node name="HomeButton" type="Button" parent="CenterContainer/Dead"]
+[node name="HomeButton" type="Button" parent="PauseUIContainer/DeathUI"]
 margin_top = 179.0
 margin_right = 171.0
 margin_bottom = 239.0
@@ -205,5 +237,8 @@ text = "NO"
 [connection signal="button_down" from="Upgrades/UpgradesList/Damage/DamageUpgrade" to="Upgrades" method="_on_DamageUpgrade_button_down"]
 [connection signal="button_down" from="Upgrades/UpgradesList/Pierce/PierceUpgrade" to="Upgrades" method="_on_PierceUpgrade_button_down"]
 [connection signal="button_down" from="Upgrades/UpgradesList/HP/HPUpgrade" to="Upgrades" method="_on_HPUpgrade_button_down"]
-[connection signal="pressed" from="CenterContainer/Dead/RestartButton" to="CenterContainer/Dead" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CenterContainer/Dead/HomeButton" to="CenterContainer/Dead" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="PauseUIContainer/PauseUI/ResumeButton" to="PauseUIContainer/PauseUI" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="PauseUIContainer/PauseUI/RestartButton" to="PauseUIContainer/PauseUI" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseUIContainer/PauseUI/HomeButton" to="PauseUIContainer/PauseUI" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="PauseUIContainer/DeathUI/RestartButton" to="PauseUIContainer/DeathUI" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseUIContainer/DeathUI/HomeButton" to="PauseUIContainer/DeathUI" method="_on_HomeButton_pressed"]

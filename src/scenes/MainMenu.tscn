@@ -8,6 +8,7 @@
 [ext_resource path="res://src/scripts/classdefs/KeybindButton.gd" type="Script" id=6]
 
 [node name="MainMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -163,9 +164,9 @@ use_top_left = true
 
 [node name="KeybindGUI" type="VBoxContainer" parent="KeybindMenuAnchor" groups=["configmenu"]]
 margin_left = -288.0
-margin_top = -326.0
+margin_top = -359.0
 margin_right = 287.0
-margin_bottom = 326.0
+margin_bottom = 359.0
 script = ExtResource( 5 )
 
 [node name="KeybindsLabel" type="Label" parent="KeybindMenuAnchor/KeybindGUI"]
@@ -254,10 +255,20 @@ script = ExtResource( 6 )
 action = "glasses2"
 user_interface_name = "Switch to Weapon 2"
 
-[node name="SpawnEnemyKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
+[node name="PauseKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 586.0
 margin_right = 575.0
 margin_bottom = 648.0
+toggle_mode = true
+text = "Pause Game: (value)"
+script = ExtResource( 6 )
+action = "pause"
+user_interface_name = "Pause Game"
+
+[node name="SpawnEnemyKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
+margin_top = 652.0
+margin_right = 575.0
+margin_bottom = 714.0
 toggle_mode = true
 text = "Spawn Enemy (debug): (value)"
 script = ExtResource( 6 )
@@ -265,9 +276,9 @@ action = "debug_spawn_enemy"
 user_interface_name = "Spawn Enemy (debug)"
 
 [node name="Buttons" type="Container" parent="KeybindMenuAnchor/KeybindGUI"]
-margin_top = 652.0
+margin_top = 718.0
 margin_right = 575.0
-margin_bottom = 652.0
+margin_bottom = 718.0
 
 [node name="ResetKeybinds" type="Button" parent="KeybindMenuAnchor/KeybindGUI/Buttons"]
 anchor_right = 0.45

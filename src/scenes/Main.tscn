@@ -24,6 +24,7 @@ a = Vector2( 262, -147 )
 b = Vector2( 262, 147 )
 
 [node name="Game" type="Node2D"]
+pause_mode = 1
 scale = Vector2( 2.5, 2.5 )
 script = ExtResource( 6 )
 
@@ -31,6 +32,7 @@ script = ExtResource( 6 )
 follow_viewport_enable = true
 
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource( 1 )]
+pause_mode = 2
 anchor_left = -0.5
 anchor_top = -0.5
 anchor_right = 0.5
