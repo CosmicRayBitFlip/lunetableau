@@ -12,7 +12,7 @@ var spawned:bool = false
 enum {WHITE, RED, BLUE, YELLOW} # teams
 
 var shoot_fatigue               = 2.0
-var time_since_last_shoot:float = shoot_fatigue
+var time_since_last_shoot:float = 0.0
 
 func spawn(spawn_pos:Vector2):
 	if get_node_or_null('Hitbox'):

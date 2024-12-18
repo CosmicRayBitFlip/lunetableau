@@ -11,9 +11,18 @@ enum { # direction constants for animation, angle between eye and player
 	ANGLE_BEHIND
 }
 
+var orbit_speed;
+
 func _ready():
 	hp = 10 + scene_root.current_round
-	speed = 15
+	speed = 10
+	orbit_speed = 30 * (scene_root.current_round / 10 + 1)
+
+func _think_movement(delta):
+	var movement_vec = Vector2.ZERO.direction_to(position).tangent() * orbit_speed
+	movement_vec.y /= 2
+	position = position.move_toward(position + movement_vec, orbit_speed * delta)
+	position = position.move_toward(Vector2.ZERO, speed * delta)
 
 func _update_animation(delta):
 	var angle_to_player = rad2deg(get_angle_to(player.global_position))
