@@ -1,3 +1,5 @@
 build/
 assets/
+!assets/font/
 .import/
+
