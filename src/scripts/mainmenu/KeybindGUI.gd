@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+const VERSION:int = 1
 enum {KEY, MOUSE_BUTTON}
 
 func _ready():
@@ -13,21 +14,24 @@ func _load():
 		if keybinds_file.file_exists("user://keybinds.dat"):
 			keybinds_file.open("user://keybinds.dat", File.READ)
 			
-			while true:
-				var action = keybinds_file.get_pascal_string()
-				if keybinds_file.eof_reached():
-					break
-				else:
-					var input
-					InputMap.action_erase_events(action) # discard default inputs
-					match keybinds_file.get_8():
-						KEY:
-							input = InputEventKey.new()
-							input.scancode = keybinds_file.get_32()
-						MOUSE_BUTTON:
-							input = InputEventMouseButton.new()
-							input.button_index = keybinds_file.get_8()
-					InputMap.action_add_event(action, input)
+			if keybinds_file.get_32() <= VERSION:
+				while true:
+					var action = keybinds_file.get_pascal_string()
+					if keybinds_file.eof_reached():
+						break
+					else:
+						var input
+						InputMap.action_erase_events(action) # discard default inputs
+						match keybinds_file.get_8():
+							KEY:
+								input = InputEventKey.new()
+								input.scancode = keybinds_file.get_32()
+							MOUSE_BUTTON:
+								input = InputEventMouseButton.new()
+								input.button_index = keybinds_file.get_8()
+						InputMap.action_add_event(action, input)
+			else:
+				get_tree().quit(2)
 			
 			keybinds_file.close()
 
@@ -36,6 +40,7 @@ func _save():
 	keybinds_file.open("user://keybinds.dat", File.WRITE)
 	var actions = InputMap.get_actions()
 	
+	keybinds_file.store_32(VERSION)
 	for action in actions:
 		if not action.begins_with("ui_"):
 			keybinds_file.store_pascal_string(action)
