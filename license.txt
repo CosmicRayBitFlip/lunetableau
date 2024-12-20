@@ -1,6 +1,6 @@
 The source code of this game is available under the GNU General Public License v3.0. See gpl.txt for the complete license details and visit https://github.com/CosmicRayBitFlip/lunetableau for a copy the source code.
 
-Assets (game art, music, sounds etc.) © KOD Studio. All rights reserved. Ignore this notice if your copy of the game does not come with proprietary assets produced by KOD Studio.
+Assets (game art, music, sounds etc.) © 2024 K.O.D. Studio. All rights reserved. Ignore this notice if your copy of the game does not come with proprietary assets produced by K.O.D. Studio.
 
 The following fonts are made available under the SIL Open Font License (see ofl.txt for details):
 Red Hat Display © 2024 Red Hat, Inc
