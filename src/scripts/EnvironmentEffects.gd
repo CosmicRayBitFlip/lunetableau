@@ -1,32 +1,24 @@
 extends WorldEnvironment
 
-enum {
-	FADE_IN,
-	FADE_OUT
-}
+const blur_amt:float = 0.1
 
-var effects_lock:bool = false
-var blurred:bool      = false
+func anim_property(property:NodePath, fade_in:bool, time:float, begin_val, end_val):
+	$Tween.interpolate_property(
+		environment, 
+		property, 
+		begin_val if fade_in else end_val, 
+		end_val if fade_in else begin_val,
+		time,
+		Tween.TRANS_QUAD,
+		Tween.EASE_OUT
+	)
+	$Tween.start()
 
-func blur(fade_in_or_out:int, time:float): # doesn't work lolz
-	
-	return
-	
-	if not effects_lock:
-		blurred = not fade_in_or_out
-		effects_lock = true
-		var sigma = 0.0
-		var desired_value
-		
-		match fade_in_or_out:
-			FADE_IN:
-				desired_value = 0.1
-			FADE_OUT:
-				desired_value = 0.0
-		
-		while sigma < time:
-			var delta = get_process_delta_time()
-			environment.dof_blur_near_amount = desired_value * (sigma / time)
-			sigma += delta
-		
-		effects_lock = false
+func blur(fade_in:bool, time:float):
+	anim_property(
+		"dof_blur_near_amount", 
+		fade_in,
+		time,
+		0.0, 
+		0.1
+	)
