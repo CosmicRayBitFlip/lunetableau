@@ -1,10 +1,11 @@
 extends KinematicBody2D
 
 onready var scene_root = $'..'
-onready var death_ui   = scene_root.get_node_or_null("CanvasLayer/GameUI/PauseUIContainer/DeathUI")
+onready var death_ui   = scene_root.get_node_or_null("UILayer/GameUI/PauseUIContainer/DeathUI")
+onready var debug_menu = scene_root.get_node_or_null("UILayer/DebugManager")
 
-const speed      = 250
-const default_hp = 5
+var speed      = 250
+var default_hp = 5
 
 # direction constants
 const FRONT = 90.0
@@ -17,11 +18,13 @@ const GREEN_LASER  = Color(0.8, 1, 0.8, 1)
 const BLUE_LASER   = Color(0.8, 0.8, 1, 1)
 const YELLOW_LASER = Color(1, 1, 0.8, 1)
 
-const weapon_cooldown     = 0.125
+var weapon_cooldown       = 0.125
 var time_since_last_fired = weapon_cooldown
 var autofire              = false
 
-var hp = default_hp
+var hp     = default_hp
+var healed = true
+var is_god = false
 
 var damage_modifier = 0
 var pierce_modifier = 0
@@ -39,13 +42,16 @@ var last_collision:KinematicCollision2D
 func _ready():
 	var settings_file = File.new()
 	settings_file.open("user://settings.dat", File.READ)
-	settings_file.get_8() # discard first value
+	settings_file.get_32() # settings version number
+	settings_file.get_8() # graphical effects setting
 	autofire = bool(settings_file.get_8())
 	settings_file.close()
 	
 	death_ui.hide()
 
 func _input(event):
+	if debug_menu.is_visible_in_tree():
+		return
 	if event.is_action_type():
 		input_vector.x = Input.get_axis("left", "right")
 		input_vector.y = Input.get_axis("up", "down")
@@ -61,7 +67,7 @@ func _input(event):
 	angle_to_mouse = rad2deg(get_angle_to(mouse_pos))
 
 func shoot():
-	if time_since_last_fired >= weapon_cooldown and scene_root.enemies_left != 0 and hp > 0:
+	if (time_since_last_fired >= weapon_cooldown or is_god) and scene_root.enemies_left != 0 and hp > 0:
 		time_since_last_fired = 0.0
 		var lasers = []
 		match glasses_type:
@@ -81,8 +87,8 @@ func _process(delta):
 		time_since_last_fired += delta
 		if (Input.is_action_pressed("shoot") and autofire):
 			shoot()
-	if hp != hp_modifier + default_hp and scene_root.enemies_left == 0:
-		hp = hp_modifier + default_hp
+	if scene_root.enemies_left == 0:
+		heal()
 	update_animation(round(angle_to_mouse / 90) * 90)
 	velocity = process_movement(Vector2(input_vector.x, input_vector.y), delta)
 	last_collision = move_and_collide(velocity)
@@ -109,12 +115,18 @@ func update_animation(rounded_mouse_angle):
 	else:
 		$AnimationPlayer.play(anim_type + "Idle")
 
+func heal():
+	if not healed and hp < hp_modifier + default_hp:
+		hp = hp_modifier + default_hp
+		healed = true
+
 func damage():
-	hp -= 1
-	if hp <= 0:
-		hide()
-		get_tree().paused = true
-		death_ui.show()
+	if not is_god:
+		hp -= 1
+		if hp <= 0:
+			hide()
+			get_tree().paused = true
+			death_ui.show()
 
 
 func _on_collision_with_laser(body):

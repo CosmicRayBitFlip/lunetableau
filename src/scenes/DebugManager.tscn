@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/scripts/Debug.gd" type="Script" id=1]
+[ext_resource path="res://src/res/CommandHistoryBG.tres" type="StyleBox" id=2]
+[ext_resource path="res://src/scripts/CommandHistoryScrollbar.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_top = 1
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="DebugManager" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="CommandHistoryPanel" type="Panel" parent="."]
+anchor_top = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.9
+custom_styles/panel = ExtResource( 2 )
+
+[node name="Scrollbar" type="ScrollContainer" parent="CommandHistoryPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+grow_vertical = 0
+rect_min_size = Vector2( 462, 0 )
+follow_focus = true
+scroll_horizontal_enabled = false
+script = ExtResource( 3 )
+
+[node name="CommandHistory" type="Label" parent="CommandHistoryPanel/Scrollbar"]
+margin_right = 450.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 450, 0 )
+size_flags_vertical = 0
+text = "ls
+Error: 'ls' is not a recognized command
+god
+YOU ARE INCINVICBLE!
+echo hi
+hi
+stuff
+Error: 'stuff' is not a recognized command.
+god
+You're back to normal
+lorem
+Lorem ipsum dolor sit amet. consectetur
+"
+autowrap = true
+
+[node name="CommandEntryPanel" type="Panel" parent="."]
+anchor_top = 0.9
+anchor_right = 0.4
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="CommandEntryBox" type="LineEdit" parent="CommandEntryPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_right = -25.0
+custom_styles/read_only = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+placeholder_text = "Enter command here..."
+
+[connection signal="resized" from="CommandHistoryPanel/Scrollbar/CommandHistory" to="CommandHistoryPanel/Scrollbar" method="on_history_changed"]

@@ -7,10 +7,13 @@ onready var paths   = [ # when accessing use `Enemy` team name constants
 	$PathManager/BluePath, 
 	$PathManager/YellowPath
 ]
-onready var player = $Player
-onready var env  = $WorldEnvironment
+onready var player        = $Player
+onready var env           = $WorldEnvironment
+onready var debug_menu    = $UILayer/DebugManager
+onready var cmd_entry_box = $UILayer/DebugManager/CommandEntryPanel/CommandEntryBox
+onready var fps_counter   = $UILayer/FPS
 
-const spawn_points = PoolVector2Array([
+var spawn_points        = PoolVector2Array([
 	Vector2(0, -375),
 	Vector2(650, 0),
 	Vector2(0, 375),
@@ -25,7 +28,12 @@ var robot_enemies = [[],[]]
 var r_pathfollows = robot_enemies[0]; var r_instances = robot_enemies[1]
 var eye_enemies   = []
 
-var gfx = true
+var gfx      = true
+var show_fps = false
+var debug    = false
+
+var blurred   = true
+var blur_time = 0.5 
 
 var current_round         = 0
 var spawn_queue           = 0
@@ -40,25 +48,40 @@ var cash  = 0
 func _ready():
 	var settings_file = File.new()
 	settings_file.open("user://settings.dat", File.READ)
-	gfx = bool(settings_file.get_8())
+	settings_file.get_32() # save file version number
+	gfx      = bool(settings_file.get_8())
+	settings_file.get_8() # autofire setting
+	show_fps = bool(settings_file.get_8())
+	debug    = bool(settings_file.get_8())
 	settings_file.close()
 	
-	if gfx == false: # this line might not work
-		env.environment = preload("res://src/res/NoEffectsEnvironment.tres")
+	if gfx == false: 
+		env.environment = preload("res://src/res/NoEffectsEnvironment.tres") # TODO: investigate performance issue
+	else:
+		env.environment.dof_blur_near_amount = env.blur_amt
+	
+	if show_fps == false:
+		fps_counter.queue_free()
 	
 func _input(event):
-	if event is InputEventKey:
-		if Input.is_action_just_pressed("debug_spawn_enemy"):
-			if event.shift:
-				spawn_eye_robot(spawn_points[spawn_point_ptr])
-				pass
-			else:
-				spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], spawn_point_ptr)
-			enemies_left += 1
-			spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
-		if Input.is_action_just_pressed("call_next_round"):
-			if enemies_left == 0:
-				call_next_round()
+	if Input.is_action_just_pressed("debug_open_console") and debug:
+		debug_menu.visible = not debug_menu.visible
+		if debug_menu.visible: cmd_entry_box.grab_focus()
+		get_tree().set_input_as_handled()
+	if not debug_menu.is_visible_in_tree():
+		if event is InputEventKey:
+			if Input.is_action_just_pressed("debug_spawn_enemy") and debug:
+				if event.shift:
+					spawn_eye_robot(spawn_points[spawn_point_ptr])
+					pass
+				else:
+					spawn_normal_robot(rand_range(Enemy.WHITE, Enemy.YELLOW), spawn_points[spawn_point_ptr], spawn_point_ptr)
+				enemies_left += 1
+				spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
+			if Input.is_action_just_pressed("call_next_round"):
+				if enemies_left == 0:
+					player.healed = false
+					call_next_round()
 
 func _process(delta):
 	time_since_last_spawn += delta
@@ -71,10 +94,12 @@ func _process(delta):
 		spawn_point_ptr = (spawn_point_ptr + 1) % spawn_points.size()
 		time_since_last_spawn = 0.0
 	if gfx == true:
-		if enemies_left == 0 and not env.blurred:
-			env.blur(env.FADE_IN, 3.0)
-		elif enemies_left != 0:
-			env.blur(env.FADE_OUT, 3.0)
+		if enemies_left == 0 and not blurred:
+			env.blur(true, blur_time)
+			blurred = true
+		elif enemies_left != 0 and blurred:
+			env.blur(false, blur_time)
+			blurred = false
 
 func call_next_round():
 	var amt_of_robots = rand_range(10.0, 50.0) * (current_round * 0.1)

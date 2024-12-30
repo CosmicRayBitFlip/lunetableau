@@ -55,7 +55,7 @@ align = 1
 margin_top = 115.0
 margin_right = 295.0
 margin_bottom = 169.0
-text = " a.0.4"
+text = " a.0.5"
 align = 1
 valign = 1
 
@@ -86,7 +86,7 @@ border_width = 2.0
 
 [node name="SettingsMenuAnchor" type="CenterContainer" parent="."]
 anchor_left = 1.5
-anchor_top = 0.4
+anchor_top = 0.475
 anchor_right = 2.0
 anchor_bottom = 0.8
 margin_bottom = 0.199997
@@ -94,9 +94,9 @@ use_top_left = true
 
 [node name="SettingsGUI" type="VBoxContainer" parent="SettingsMenuAnchor" groups=["configmenu"]]
 margin_left = -199.0
-margin_top = -186.0
+margin_top = -281.0
 margin_right = 198.0
-margin_bottom = 186.0
+margin_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -132,16 +132,35 @@ margin_right = 397.0
 margin_bottom = 244.0
 text = "Autofire"
 
-[node name="KeybindButton" type="Button" parent="SettingsMenuAnchor/SettingsGUI"]
+[node name="Label" type="Label" parent="SettingsMenuAnchor/SettingsGUI"]
 margin_top = 248.0
 margin_right = 397.0
-margin_bottom = 308.0
+margin_bottom = 302.0
+text = "Debug"
+align = 1
+
+[node name="FpsSwitch" type="CheckButton" parent="SettingsMenuAnchor/SettingsGUI"]
+margin_top = 306.0
+margin_right = 397.0
+margin_bottom = 368.0
+text = "Show FPS"
+
+[node name="DebugSwitch" type="CheckButton" parent="SettingsMenuAnchor/SettingsGUI"]
+margin_top = 372.0
+margin_right = 397.0
+margin_bottom = 434.0
+text = "Debug Mode"
+
+[node name="KeybindButton" type="Button" parent="SettingsMenuAnchor/SettingsGUI"]
+margin_top = 438.0
+margin_right = 397.0
+margin_bottom = 498.0
 text = "Manage Keybindings"
 
 [node name="BackButton" type="Button" parent="SettingsMenuAnchor/SettingsGUI"]
-margin_top = 312.0
+margin_top = 502.0
 margin_right = 397.0
-margin_bottom = 372.0
+margin_bottom = 562.0
 text = "Back"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SettingsMenuAnchor"]
@@ -165,21 +184,21 @@ rect_scale = Vector2( 0.75, 0.75 )
 use_top_left = true
 
 [node name="KeybindGUI" type="VBoxContainer" parent="KeybindMenuAnchor" groups=["configmenu"]]
-margin_left = -288.0
-margin_top = -359.0
-margin_right = 287.0
-margin_bottom = 359.0
+margin_left = -260.0
+margin_top = -392.0
+margin_right = 260.0
+margin_bottom = 392.0
 script = ExtResource( 5 )
 
 [node name="KeybindsLabel" type="Label" parent="KeybindMenuAnchor/KeybindGUI"]
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 54.0
 text = "Keybindings:"
 align = 1
 
 [node name="UpKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 58.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 120.0
 toggle_mode = true
 text = "Move Up: (value)"
@@ -189,7 +208,7 @@ user_interface_name = "Move Up"
 
 [node name="DownKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 124.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 186.0
 toggle_mode = true
 text = "Move Down: (value)"
@@ -199,7 +218,7 @@ user_interface_name = "Move Down"
 
 [node name="LeftKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 190.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 252.0
 toggle_mode = true
 text = "Move Left: (value)"
@@ -209,7 +228,7 @@ user_interface_name = "Move Left"
 
 [node name="RightKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 256.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 318.0
 toggle_mode = true
 text = "Move Right: (value)"
@@ -219,7 +238,7 @@ user_interface_name = "Move Right"
 
 [node name="NextRoundKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 322.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 384.0
 toggle_mode = true
 text = "Call Next Round: (value)"
@@ -229,7 +248,7 @@ user_interface_name = "Call Next Round"
 
 [node name="ShootKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 388.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 450.0
 toggle_mode = true
 text = "Fire Laser: (value)"
@@ -239,7 +258,7 @@ user_interface_name = "Fire Laser"
 
 [node name="Glasses1Keybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 454.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 516.0
 toggle_mode = true
 text = "Switch to Weapon 1: (value)"
@@ -249,7 +268,7 @@ user_interface_name = "Switch to Weapon 1"
 
 [node name="Glasses2Keybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 520.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 582.0
 toggle_mode = true
 text = "Switch to Weapon 2: (value)"
@@ -259,7 +278,7 @@ user_interface_name = "Switch to Weapon 2"
 
 [node name="PauseKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 586.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 648.0
 toggle_mode = true
 text = "Pause Game: (value)"
@@ -269,18 +288,30 @@ user_interface_name = "Pause Game"
 
 [node name="SpawnEnemyKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
 margin_top = 652.0
-margin_right = 575.0
+margin_right = 520.0
 margin_bottom = 714.0
 toggle_mode = true
-text = "Spawn Enemy (debug): (value)"
+text = "Spawn Enemy: (value)"
 script = ExtResource( 6 )
 action = "debug_spawn_enemy"
-user_interface_name = "Spawn Enemy (debug)"
+user_interface_name = "Spawn Enemy"
+debug = true
+
+[node name="ConsoleKeybind" type="ToolButton" parent="KeybindMenuAnchor/KeybindGUI"]
+margin_top = 718.0
+margin_right = 520.0
+margin_bottom = 780.0
+toggle_mode = true
+text = "Open Console: (value)"
+script = ExtResource( 6 )
+action = "debug_open_console"
+user_interface_name = "Open Console"
+debug = true
 
 [node name="Buttons" type="Container" parent="KeybindMenuAnchor/KeybindGUI"]
-margin_top = 718.0
-margin_right = 575.0
-margin_bottom = 718.0
+margin_top = 784.0
+margin_right = 520.0
+margin_bottom = 784.0
 
 [node name="ResetKeybinds" type="Button" parent="KeybindMenuAnchor/KeybindGUI/Buttons"]
 anchor_right = 0.45

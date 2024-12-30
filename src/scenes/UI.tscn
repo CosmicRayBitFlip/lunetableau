@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/scripts/DebugFPS.gd" type="Script" id=1]
 [ext_resource path="res://src/res/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/scripts/UI.gd" type="Script" id=3]
 [ext_resource path="res://src/scripts/Upgrades.gd" type="Script" id=4]
@@ -50,10 +49,6 @@ margin_bottom = 54.0
 grow_horizontal = 2
 custom_colors/font_color = Color( 0.4, 0.992157, 0.572549, 1 )
 text = "$0"
-
-[node name="FPS" type="Label" parent="."]
-align = 1
-script = ExtResource( 1 )
 
 [node name="HP" type="Label" parent="."]
 anchor_top = 1.0
@@ -169,7 +164,7 @@ script = ExtResource( 6 )
 
 [node name="PauseUIContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
-anchor_top = 0.3
+anchor_top = 0.4
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_top = 20.0

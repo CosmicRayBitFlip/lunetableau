@@ -2,6 +2,7 @@ extends Control
 
 onready var scene_root = get_tree().get_current_scene()
 onready var player = scene_root.get_node("Player")
+onready var debug_menu = scene_root.get_node("UILayer/DebugManager")
 onready var round_counter = $"TopBar/RoundCounter"
 onready var score_counter = $"TopBar/ScoreCounter"
 onready var cash_counter = $"TopBar/Cash"
@@ -32,6 +33,7 @@ func _process(delta):
 		enemy_counter.hide()
 
 func _input(event):
+	if not debug_menu.visible:
 		if Input.is_action_just_pressed("pause"):
 			if player.hp > 0:
 				pause_ui.visible = not pause_ui.visible

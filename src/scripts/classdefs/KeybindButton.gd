@@ -5,6 +5,9 @@ class_name KeybindButton
 
 export var action:String
 export var user_interface_name:String setget set_ui_name
+export var debug:bool
+
+onready var debug_switch = $"/root/MainMenu/SettingsMenuAnchor/SettingsGUI/DebugSwitch"
 
 const default_text = "Configure this button in the Inspector."
 
@@ -15,13 +18,13 @@ func _init():
 	if Engine.editor_hint:
 		text = default_text
 	toggle_mode = true
-	
-	
 
 func _ready():
 	if not Engine.editor_hint:
 		assert(action and user_interface_name, "Button is not properly configured.")
-		
+	
+	check_if_should_be_shown()
+	debug_switch.connect("pressed", self, "check_if_should_be_shown")
 
 func _input(event):
 	if not Engine.editor_hint and pressed:
@@ -37,15 +40,22 @@ func _input(event):
 			get_tree().set_input_as_handled()
 
 func redraw():
+	var debug_hint = " (debug)" if debug else ""
 	if user_interface_name:
 		if Engine.editor_hint:
-			text = user_interface_name + ": (value)" 
+			text = user_interface_name + debug_hint + ": (value)" 
 		else: # guh i hope this works
 			current_input = InputMap.get_action_list(action)[0]
 			value = get_input_repr(current_input)
-			text = user_interface_name + ": " + value
+			text = user_interface_name + debug_hint + ": " + value
 	else:
 		text = default_text
+
+func check_if_should_be_shown():
+	if debug and not debug_switch.pressed:
+		hide()
+	else:
+		show()
 
 func set_ui_name(new_name):
 	user_interface_name = new_name
