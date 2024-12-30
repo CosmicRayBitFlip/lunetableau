@@ -29,21 +29,17 @@ func _think_movement(delta):
 		path_follow.offset += speed * delta
 
 func _update_animation(delta):
-	var dummy = PathFollow2D.new()
-	dummy.offset = path_follow.offset + speed * delta * (scene_root.current_round / 10 + 1)
-	path.add_child(dummy)
-	
-	var dir_to_next_movement = dummy.position - path_follow.position
-	if dir_to_next_movement.x < dir_to_next_movement.y:
+	var dir_to_next_movement = global_position.direction_to(player.global_position)
+	if abs(dir_to_next_movement.x) > abs(dir_to_next_movement.y):
 		if dir_to_next_movement.x < 0:
 			$AnimationPlayer.play("LeftWalk")
 		else:
 			$AnimationPlayer.play("RightWalk")
 	else:
 		if dir_to_next_movement.y < 0:
-			$AnimationPlayer.play("FrontWalk")
-		else:
 			$AnimationPlayer.play("BackWalk")
+		else:
+			$AnimationPlayer.play("FrontWalk")
 
 func _think_shoot(): # refactor this later
 	if time_since_last_shoot > shoot_fatigue and player.hp > 0:
